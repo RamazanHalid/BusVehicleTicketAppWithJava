@@ -1,3 +1,14 @@
+/**
+ * @author Ramazan Halid 20160807009
+ * @version 05.04.2021
+ *
+ * ToDo
+ * This is a Bus Vehicle Tickets Android Application.
+ *
+ *
+ * */
+
+
 package com.example.busvehicletickets;
 
 import androidx.appcompat.app.AppCompatActivity;

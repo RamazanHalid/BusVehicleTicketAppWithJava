@@ -1,3 +1,14 @@
+/**
+ * @author Ramazan Halid 20160807009
+ * @version 05.04.2021
+ *
+ * ToDo
+ * This is a Bus Vehicle Tickets Android Application.
+ *
+ *
+ * */
+
+
 package com.example.busvehicletickets;
 
 import androidx.annotation.NonNull;
@@ -33,25 +44,8 @@ public class LoginActivity extends AppCompatActivity {
         if (mAuth.getCurrentUser()!=null){
             Intent mainIntent = new Intent(this, MainActivity.class);
             startActivity(mainIntent);
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-            System.out.println("asdf");
-        }
+
+          }
     }
 
     public void navigateUser(View view){

@@ -48,6 +48,9 @@ public class LoginActivity extends AppCompatActivity {
             System.out.println("asdf");
             System.out.println("asdf");
             System.out.println("asdf");
+            System.out.println("asdf");
+            System.out.println("asdf");
+            System.out.println("asdf");
         }
     }
 

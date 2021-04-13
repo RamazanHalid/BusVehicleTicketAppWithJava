@@ -13,35 +13,26 @@ package com.example.busvehicletickets;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-
-import com.google.firebase.auth.FirebaseAuth;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
+
+    String[] selection = {"News", "Announcements", "Find Ticket", "History ", "Setting ", "Logout "};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mAuth = FirebaseAuth.getInstance();
+
+        ArrayAdapter my_adapter = new ArrayAdapter<String>(this,
+                R.layout.my_list,R.id.customizedTextView, selection);
+        ListView List = findViewById(R.id.DoList);
+        List.setAdapter(my_adapter);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        TextView textViewser = (TextView) findViewById(R.id.main_textViewUser);
-        textViewser.setText("Welcome, " + mAuth.getCurrentUser().getEmail() );
-    }
 
-    public void logout(View view){
-        mAuth.signOut();
-        Intent intent = new Intent(this,LoginActivity.class);
-        startActivity(intent);
-    }
 }
 

@@ -59,8 +59,9 @@ public class LoginActivity extends AppCompatActivity {
         EditText editTextPassword = (EditText) findViewById(R.id.login_editTextPassword);
         String password = editTextPassword.getText().toString();
 
-        Intent mainIntent = new Intent(this, MainActivity.class);
 
+        Intent mainIntent = new Intent(this, MainActivity2.class);
+        mainIntent.putExtra("userEmail" , email);
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {

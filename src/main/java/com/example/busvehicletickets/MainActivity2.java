@@ -23,7 +23,7 @@ public class MainActivity2
     TabLayout tabLayout;
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
-    private ListView listOfHomePageItems;
+
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -41,22 +41,7 @@ public class MainActivity2
 
         // It is used to join TabLayout with ViewPager.
         tabLayout.setupWithViewPager(viewPager);
-        final ArrayList<String> homePageItems = new ArrayList<>();
-        homePageItems.add("News");
-        homePageItems.add("Announcements");
-        homePageItems.add("Last ticket");
-        listOfHomePageItems = findViewById(R.id.listOfHomePageItems);
 
-        ArrayAdapter<String> listOfHomePageItemsAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_list_item_1, homePageItems
-        );
-        listOfHomePageItems.setAdapter(listOfHomePageItemsAdapter);
-        listOfHomePageItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity2.this, homePageItems.get(position) + "Selected", Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 }

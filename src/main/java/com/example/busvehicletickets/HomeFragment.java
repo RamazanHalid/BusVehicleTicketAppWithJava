@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment{
-    String a;
+
     String[] contents1 = {"Announcements" , "News"};
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+       /* mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("users").child(mAuth.getCurrentUser().getUid()).get()
                 .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment{
                             System.out.println(task.getException().getMessage());
                         }
                     }
-                });
+                });*/
 
     }
 }

@@ -71,17 +71,12 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                          if (task.isSuccessful()){
                              FirebaseUser user = mAuth.getCurrentUser();
-                             mDatabase = FirebaseDatabase.getInstance().getReference();
+                           /*  mDatabase = FirebaseDatabase.getInstance().getReference();
                              mDatabase.child("users").child(user.getUid()).setValue(userInfo);
-
+*/
                              System.out.println(user.getEmail());
-                             System.out.println(userInfo.nameSurname);
-                             System.out.println(userInfo.phoneNumber);
 
-
-
-
-                             Toast.makeText(RegisterActivity.this, "Account successfully created!", Toast.LENGTH_SHORT).show();
+                             Toast.makeText(RegisterActivity.this, "Account  created successfully!", Toast.LENGTH_SHORT).show();
 
                          }
                          else{

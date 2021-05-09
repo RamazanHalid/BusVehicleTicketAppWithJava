@@ -57,8 +57,8 @@ public class HomeFragment extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
-       /* mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("users").child(mAuth.getCurrentUser().getUid()).get()
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        /*mDatabase.child("users").child(mAuth.getCurrentUser().getUid()).get()
                 .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {

@@ -83,6 +83,7 @@
         android:layout_marginBottom="94dp"
         android:onClick="goLogin"
         android:text="You already have an account? Go to login."
+        android:textColor="#9C27B0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

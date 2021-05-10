@@ -25,17 +25,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-
+    FirebaseFirestore myRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+         myRef = FirebaseFirestore.getInstance();
     }
     @Override
     protected void onStart() {
@@ -60,8 +62,11 @@ public class LoginActivity extends AppCompatActivity {
         String password = editTextPassword.getText().toString();
 
 
+
         Intent mainIntent = new Intent(this, MainActivity2.class);
         mainIntent.putExtra("userEmail" , email);
+        FirebaseUser user = mAuth.getCurrentUser();
+        mainIntent.putExtra("userId", mAuth.getUid());
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {

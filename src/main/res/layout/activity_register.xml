@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFEB3B"
     tools:context=".RegisterActivity">
 
     <EditText
@@ -65,9 +66,10 @@
         android:layout_marginRight="153dp"
         android:onClick="createUser"
         android:text="Register"
+        app:backgroundTint="#2196F3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_radioGanderR" />
+        app:layout_constraintTop_toBottomOf="@+id/register_radioGander" />
 
     <TextView
         android:id="@+id/textView"
@@ -99,13 +101,13 @@
         android:ems="10"
         android:hint="Phone"
         android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/register_radioGanderR"
+        app:layout_constraintBottom_toTopOf="@+id/register_radioGander"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_editTextTextPersonName" />
 
     <RadioGroup
-        android:id="@+id/register_radioGanderR"
+        android:id="@+id/register_radioGander"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="125dp"
@@ -152,6 +154,8 @@
         android:layout_marginEnd="168dp"
         android:layout_marginRight="168dp"
         android:text="Registration"
+        android:textColor="#2196F3"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -166,8 +170,8 @@
         android:layout_marginEnd="104dp"
         android:layout_marginRight="104dp"
         android:ems="10"
+        android:hint="Name and Surname"
         android:inputType="textPersonName"
-        android:text="Name and Surname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_editTextConfirmPassword" />

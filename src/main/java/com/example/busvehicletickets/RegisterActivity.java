@@ -19,6 +19,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.busvehicletickets.dto.User;
@@ -66,7 +68,12 @@ public class RegisterActivity extends AppCompatActivity {
         EditText editTextPhoneNumber = (EditText) findViewById(R.id.register_editTextPhone);
         String phoneNumber = editTextPhoneNumber.getText().toString();
 
-        User user = new User(personNameSurname,phoneNumber,"male");
+        RadioGroup radioGroupGenders = (RadioGroup) findViewById(R.id.register_radioGander);
+        int selectedId = radioGroupGenders.getCheckedRadioButtonId();
+        RadioButton radioButtonGender = (RadioButton) findViewById(selectedId);
+        String userGender = (String) radioButtonGender.getText();
+
+        User user = new User(personNameSurname,phoneNumber,userGender);
 
         if (!password.equals(confirmPassword)){
             Toast.makeText(RegisterActivity.this,"Password and Confirm password must be the same",Toast.LENGTH_SHORT).show();
@@ -77,14 +84,11 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                          if (task.isSuccessful()){
+                             String userId = mAuth.getUid();
                              myRef.collection("users")
-                                     .add(user)
-                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                         @Override
-                                         public void onSuccess(DocumentReference documentReference) {
+                                     .document(userId)
+                                     .set(user);
 
-                                         }
-                                     });
 
                              Toast.makeText(RegisterActivity.this, "Account  created successfully!", Toast.LENGTH_SHORT).show();
 
@@ -101,8 +105,5 @@ public class RegisterActivity extends AppCompatActivity {
         Intent loginIntent = new Intent(this, LoginActivity.class);
         startActivity(loginIntent);
     }
-    public void writeNewUser(String userId, String nameSurname, String phoneNumber){
 
-
-    }
 }

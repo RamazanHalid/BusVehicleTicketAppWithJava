@@ -9,24 +9,29 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#FF9800"
         android:theme="@style/Theme.BusVehicleTickets.AppBarOverlay">
+
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
             android:text="@string/app_name"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
 
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
-            app:tabSelectedTextColor="@color/design_default_color_primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary" />
+            android:background="#CDDC39"
+            android:visibility="visible"
+            app:tabIndicatorColor="#CC4949"
+            app:tabSelectedTextColor="#00BCD4" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager

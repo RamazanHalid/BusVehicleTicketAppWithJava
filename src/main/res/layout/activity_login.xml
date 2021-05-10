@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFEB3B"
     tools:context=".LoginActivity">
 
     <EditText
@@ -18,6 +19,8 @@
         android:ems="10"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
+        android:textColor="#1E1A1A"
+        android:textColorHighlight="#03A9F4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,6 +52,7 @@
         android:layout_marginRight="162dp"
         android:onClick="login"
         android:text="Login"
+        app:backgroundTint="#03A9F4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_editTextPassword" />
@@ -65,6 +69,7 @@
         android:layout_marginBottom="161dp"
         android:onClick="navigateUser"
         android:text="Create an account for free."
+        android:textColor="#9C27B0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

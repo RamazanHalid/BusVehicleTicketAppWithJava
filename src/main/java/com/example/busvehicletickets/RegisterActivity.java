@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -36,74 +37,103 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterActivity extends AppCompatActivity {
-     FirebaseAuth mAuth;
-     FirebaseDatabase mDatabase;
-     FirebaseFirestore myRef;
+   static  FirebaseAuth mAuth;
+   static  FirebaseDatabase mDatabase;
+   static  FirebaseFirestore myRef;
+   static  String email;
+   static  String password;
+   static  String confirmPassword;
+   static  String personNameSurname;
+   static  String phoneNumber;
+   static  String userGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mDatabase = FirebaseDatabase.getInstance();
-        mAuth = FirebaseAuth.getInstance();
-        myRef = FirebaseFirestore.getInstance();
 
 
     }
+        public void goLogin (View view){
+            Intent loginIntent = new Intent(this, LoginActivity.class);
+            startActivity(loginIntent);
+        }
+        public void createUser(View view) {
+            mDatabase = FirebaseDatabase.getInstance();
+            mAuth = FirebaseAuth.getInstance();
+            myRef = FirebaseFirestore.getInstance();
 
-    public void createUser(View view){
-        EditText editTextEmail = (EditText) findViewById(R.id.register_editTextEmail);
-        String email = editTextEmail.getText().toString();
+            EditText editTextEmail = (EditText) findViewById(R.id.register_editTextEmail);
+            email = editTextEmail.getText().toString();
 
-        EditText editTextPassword = (EditText) findViewById(R.id.register_editTextPassword);
-        String password = editTextPassword.getText().toString();
+            email = email.replaceAll("\\s+", "");
 
-        EditText editTextConfirmPassword = (EditText) findViewById(R.id.register_editTextConfirmPassword);
-        String confirmPassword = editTextConfirmPassword.getText().toString();
+            EditText editTextPassword = (EditText) findViewById(R.id.register_editTextPassword);
+            password = editTextPassword.getText().toString();
 
-        EditText editTextPersonNameSurname = (EditText) findViewById(R.id.register_editTextTextPersonName);
-        String personNameSurname = editTextPersonNameSurname.getText().toString();
+            password = password.replaceAll("\\s+", "");
 
-        EditText editTextPhoneNumber = (EditText) findViewById(R.id.register_editTextPhone);
-        String phoneNumber = editTextPhoneNumber.getText().toString();
+            EditText editTextConfirmPassword = (EditText) findViewById(R.id.register_editTextConfirmPassword);
+            confirmPassword = editTextConfirmPassword.getText().toString();
 
-        RadioGroup radioGroupGenders = (RadioGroup) findViewById(R.id.register_radioGander);
-        int selectedId = radioGroupGenders.getCheckedRadioButtonId();
-        RadioButton radioButtonGender = (RadioButton) findViewById(selectedId);
-        String userGender = (String) radioButtonGender.getText();
+            confirmPassword = confirmPassword.replaceAll("\\s+", "");
 
-        User user = new User(personNameSurname,phoneNumber,userGender);
+            EditText editTextPersonNameSurname = (EditText) findViewById(R.id.register_editTextTextPersonName);
+            personNameSurname = editTextPersonNameSurname.getText().toString();
 
-        if (!password.equals(confirmPassword)){
-            Toast.makeText(RegisterActivity.this,"Password and Confirm password must be the same",Toast.LENGTH_SHORT).show();
-          }
-        else{
+            personNameSurname = personNameSurname.replaceAll("\\s+", "");
 
-            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                         if (task.isSuccessful()){
-                             String userId = mAuth.getUid();
-                             myRef.collection("users")
-                                     .document(userId)
-                                     .set(user);
+            EditText editTextPhoneNumber = (EditText) findViewById(R.id.register_editTextPhone);
+            phoneNumber = editTextPhoneNumber.getText().toString();
+
+            phoneNumber = phoneNumber.replaceAll("\\s+", "");
+
+            RadioGroup radioGroupGenders = (RadioGroup) findViewById(R.id.register_radioGander);
+            int selectedId = radioGroupGenders.getCheckedRadioButtonId();
+            RadioButton radioButtonGender = (RadioButton) findViewById(selectedId);
+            userGender = (String) radioButtonGender.getText();
+
+            userGender = userGender.replaceAll("\\s+", "");
 
 
-                             Toast.makeText(RegisterActivity.this, "Account  created successfully!", Toast.LENGTH_SHORT).show();
 
-                         }
-                         else{
-                             Toast.makeText(RegisterActivity.this,task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                         }
+            if (!(email.equals("") ||
+                    password.equals("") ||
+                    confirmPassword.equals("") ||
+                    personNameSurname.equals("") ||
+                    phoneNumber.equals("") ||
+                    userGender.equals("")
+            )) {
+                User user = new User(personNameSurname, phoneNumber, userGender);
+
+                if (!password.equals(confirmPassword)) {
+                    Toast.makeText(RegisterActivity.this, "Password and Confirm password must be the same", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                String userId = mAuth.getUid();
+                                myRef.collection("users")
+                                        .document(userId)
+                                        .set(user);
+
+
+                                Toast.makeText(RegisterActivity.this, "Account  created successfully!", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
-            });
+
+            } else {
+
+                Toast.makeText(RegisterActivity.this, "Please FILL all of blanks!", Toast.LENGTH_SHORT).show();
+
+            }
         }
     }
-
-    public void goLogin(View view) {
-        Intent loginIntent = new Intent(this, LoginActivity.class);
-        startActivity(loginIntent);
-    }
-
-}

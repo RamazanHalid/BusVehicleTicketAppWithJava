@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth = FirebaseAuth.getInstance();
+         mAuth = FirebaseAuth.getInstance();
          myRef = FirebaseFirestore.getInstance();
     }
     @Override
@@ -58,26 +58,38 @@ public class LoginActivity extends AppCompatActivity {
         EditText editTextEmail = (EditText) findViewById(R.id.login_editTextEmail);
         String email = editTextEmail.getText().toString();
 
+        email = email.replaceAll("\\s+" , "");
+
         EditText editTextPassword = (EditText) findViewById(R.id.login_editTextPassword);
         String password = editTextPassword.getText().toString();
 
+        password = password.replaceAll("\\s+" , "");
 
+        if (!(email.equals("") || password.equals("") )){
+            Intent mainIntent = new Intent(this, MainActivity2.class);
+            mainIntent.putExtra("userEmail" , email);
+            FirebaseUser user = mAuth.getCurrentUser();
+            mainIntent.putExtra("userId", mAuth.getUid());
+            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        startActivity(mainIntent);
 
-        Intent mainIntent = new Intent(this, MainActivity2.class);
-        mainIntent.putExtra("userEmail" , email);
-        FirebaseUser user = mAuth.getCurrentUser();
-        mainIntent.putExtra("userId", mAuth.getUid());
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    startActivity(mainIntent);
-
+                    }
+                    else{
+                        Toast.makeText(LoginActivity.this,task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else{
-                    Toast.makeText(LoginActivity.this,task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+            });
+
+
+        }
+        else {
+
+            Toast.makeText(LoginActivity.this,"Email Or Password can not be EMPTY!", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 }

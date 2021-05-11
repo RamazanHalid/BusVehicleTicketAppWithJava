@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -24,6 +25,7 @@ import java.util.Map;
 public class SearchResultActivity extends AppCompatActivity {
     FirebaseFirestore myRef = FirebaseFirestore.getInstance();
     private static final String TAG = "SearchResultActivity";
+    private static ArrayList<TravelDetails> travelDetailsArrayList;
     private static List<String> results;
     private TravelDetailsAdapter mAdapter;
 
@@ -49,47 +51,45 @@ public class SearchResultActivity extends AppCompatActivity {
         TextView dateTravelTextVIew = (TextView) findViewById(R.id.search_travelDate);
         dateTravelTextVIew.setText(dateTravel);
 
-        ArrayList<TravelDetails> travelDetailsArrayList = new ArrayList<>();
+
         ListView listView = (ListView) findViewById(R.id.search_resultList);
 
-        travelDetailsArrayList.add(new TravelDetails("123", "11", "333", "1000"));
-        travelDetailsArrayList.add(new TravelDetails("1223", "121", "3333", "1000"));
-        travelDetailsArrayList.add(new TravelDetails("13423", "11", "33433", "1000"));
-        travelDetailsArrayList.add(new TravelDetails("12343", "1211", "333", "10001"));
         myRef.collection("travels")
+                .orderBy("Time", Query.Direction.ASCENDING)
                 .whereEqualTo("fromCity", fromCity)
                 .whereEqualTo("toCity", toCity)
+                .whereEqualTo("Date", dateTravel)
+
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            travelDetailsArrayList = new ArrayList<TravelDetails>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 System.out.println("************" + document.getData() + "*****************");
 
-                                results = new ArrayList<>();
-                                Map<String, Object> doc = document.getData();
-                                String rowResult = doc.get("Time").toString() + "  |   " + doc.get("distance").toString() + "km |   "
-                                        + doc.get("travelTime") + "h |   " + doc.get("price") + "TL";
 
-                                results.add(rowResult);
+                                Map<String, Object> doc = document.getData();
+
+                                travelDetailsArrayList.add(new TravelDetails(doc.get("distance").toString() +"km",
+                                        doc.get("price") + "TL", doc.get("travelTime") + "h", doc.get("Time").toString()));
 
 
                             }
+                            mAdapter = new TravelDetailsAdapter(SearchResultActivity.this, travelDetailsArrayList);
+                            listView.setAdapter(mAdapter);
                         } else {
 
                             System.out.println("*************************************************************");
                         }
+
                     }
                 });
 
 
 
-        /*ArrayAdapter<String> resultsAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, results);
-        */
-        mAdapter = new TravelDetailsAdapter(this, travelDetailsArrayList);
 
-        listView.setAdapter(mAdapter);
+
     }
 }

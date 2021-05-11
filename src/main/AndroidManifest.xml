@@ -10,8 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BusVehicleTickets">
-        <activity android:name=".SearchResultActivity"></activity>
-        <activity android:name=".HomeFragment"
+        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".BoughtTicketActivity" />
+        <activity android:name=".FavoriteActivity" />
+        <activity android:name=".SellingActivity" />
+        <activity android:name=".SearchResultActivity" />
+        <activity
+            android:name=".HomeFragment"
             tools:ignore="Instantiatable" />
         <activity
             android:name=".MainActivity2"

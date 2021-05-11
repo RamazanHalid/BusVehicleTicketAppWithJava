@@ -32,7 +32,8 @@ public class OthersFragment extends Fragment {
         profileTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                    Intent intent = new Intent(getContext(), ProfileActivity.class);
+                    startActivity(intent);
             }
         });
 

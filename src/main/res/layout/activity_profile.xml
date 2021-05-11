@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40sp"
+            android:layout_marginBottom="40sp"
+            android:gravity="center"
+            android:text="Profile"
+            android:textColor="#2196F3"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/profile_nameSurname"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+
+            android:textSize="25dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+
+            />
+
+        <EditText
+            android:id="@+id/profile_EmailAddress"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+
+            android:textSize="25dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/profile_Phone"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+
+            android:textSize="25dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:ems="10"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/profile_password"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:textSize="25dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:ems="10"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/profile_password2"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+
+            android:textSize="25dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:ems="10"
+            android:hint="Confirm Password"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/updateButton"
+
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:onClick="updateInfo"
+            android:text="Update" />
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

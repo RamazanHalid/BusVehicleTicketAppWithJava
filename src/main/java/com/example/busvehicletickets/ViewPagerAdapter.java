@@ -23,9 +23,8 @@ public class ViewPagerAdapter
             fragment = new HomeFragment();
         else if (position == 1)
             fragment = new MenuFragment();
+
         else if (position == 2)
-            fragment = new FavoritesFragment();
-        else if (position == 3)
             fragment = new OthersFragment();
 
         return fragment;
@@ -34,7 +33,7 @@ public class ViewPagerAdapter
     @Override
     public int getCount()
     {
-        return 4;
+        return 3;
     }
 
     @Override
@@ -46,9 +45,8 @@ public class ViewPagerAdapter
 
         else if (position == 1)
             title = "Menu";
+
         else if (position == 2)
-            title = "Favorites";
-        else if (position == 3)
             title = "Others";
         return title;
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.busvehicletickets">
 
     <application
@@ -9,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BusVehicleTickets">
-        <activity android:name=".HomeFragment"></activity>
+        <activity android:name=".SearchResultActivity"></activity>
+        <activity android:name=".HomeFragment"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".MainActivity2"
             android:label="@string/title_activity_main2"

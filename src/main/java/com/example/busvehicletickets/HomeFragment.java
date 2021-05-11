@@ -3,6 +3,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,8 +24,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.type.Date;
+
 import org.jetbrains.annotations.Nullable;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -32,6 +39,7 @@ public class HomeFragment extends Fragment{
 
     private static final String TAG = "HomeFragment";
     String[] contents1 = {"Announcements" , "News"};
+    String date;
 
     FirebaseFirestore myRef = FirebaseFirestore.getInstance();
     private View view;
@@ -39,6 +47,8 @@ public class HomeFragment extends Fragment{
     private Spinner spinnerFrom;
     private Spinner spinnerTo;
     private TextView travelDate;
+    private String toCity;
+    private String fromCity;
     private DatePickerDialog.OnDateSetListener dataSetListener;
 
 
@@ -47,11 +57,10 @@ public class HomeFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-         view = inflater.inflate(R.layout.home_frag_layout, container, false);
+        view = inflater.inflate(R.layout.home_frag_layout, container, false);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),R.layout.my_list , contents1);
-       /* ListView listView = (ListView) view.findViewById(R.id.contents);
-        listView.setAdapter(adapter);*/
+
         String userId = getActivity().getIntent().getExtras().getString("userId");
         TextView textView = (TextView) view.findViewById(R.id.homepage_textViewUser);
         myRef.collection("users")
@@ -75,12 +84,6 @@ public class HomeFragment extends Fragment{
 
 
         List<String> cities = new ArrayList<>();
-        cities.add("Adana");
-        cities.add("Mersin");
-        cities.add("izmir");
-        cities.add("istanbul");
-        cities.add("Adana");
-        cities.add("Mersin");
         cities.add("izmir");
         cities.add("istanbul");
 
@@ -98,7 +101,7 @@ public class HomeFragment extends Fragment{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //on selecting a spinner
-                String fromCity = parent.getItemAtPosition(position).toString();
+                fromCity = parent.getItemAtPosition(position).toString();
 
                 Toast.makeText(parent.getContext(), "Selected from: " + fromCity, Toast.LENGTH_SHORT).show();
             }
@@ -112,7 +115,7 @@ public class HomeFragment extends Fragment{
         spinnerTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String toCity = parent.getItemAtPosition(position).toString();
+                toCity = parent.getItemAtPosition(position).toString();
                 Toast.makeText(parent.getContext(), "Selected to: " + toCity, Toast.LENGTH_SHORT).show();
             }
 
@@ -123,10 +126,14 @@ public class HomeFragment extends Fragment{
         });
 
         travelDate = (TextView) view.findViewById(R.id.travelDate);
+        travelDate.setText( "12/05/2021");
         travelDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Calendar cal = Calendar.getInstance();
+
+
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
@@ -143,13 +150,38 @@ public class HomeFragment extends Fragment{
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 Log.d(TAG,"OnDateSet: date: " + dayOfMonth + "/" + month + "/"  + year);
-                String date =  dayOfMonth + "/" + month + "/"  + year;
+                 date =  dayOfMonth + "/" + month + "/"  + year;
                 travelDate.setText(date);
             }
         };
 
+
+        Button searchButton = (Button) view.findViewById(R.id.home_searchButton);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (travelDate ==null){
+                    Toast.makeText(getContext(), "Travel date can not be EMPTY!", Toast.LENGTH_SHORT).show();
+
+                }
+                else {
+                    Intent intent = new Intent(getContext(), SearchResultActivity.class);
+                    String travelDateString = travelDate.getText().toString();
+
+                    intent.putExtra("travelDate", travelDateString);
+                    intent.putExtra("toCity", toCity);
+                    intent.putExtra("fromCity", fromCity);
+                    startActivity(intent);
+                }
+
+            }
+        });
+
         return view;
     }
+
+
+
 
     @Override
     public void onStart() {

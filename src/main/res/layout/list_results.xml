@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:textAlignment="center"
+    >
+
+<TableRow>
+    <TextView
+        android:id="@+id/textView_leavingTime"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textSize="20sp"
+
+
+        />
+
+    <TextView
+        android:id="@+id/textView_distance"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/textView_leavingTime"
+        android:layout_margin="20dp"
+        android:textSize="20sp"
+        android:textAlignment="center"
+
+        android:gravity="center_horizontal" />
+    <TextView
+        android:id="@+id/textView_travelTime"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/textView_distance"
+        android:layout_margin="20dp"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/textView_price"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/textView_travelTime"
+        android:layout_margin="20dp"
+        android:textSize="20sp"/>
+
+</TableRow>
+
+</TableLayout>
+
+
+
+

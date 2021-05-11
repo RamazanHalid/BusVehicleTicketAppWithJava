@@ -1,18 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".OthersFragment">
 
     <TextView
-        android:textColor="@color/design_default_color_primary"
+        android:id="@+id/others_settings"
+        android:layout_width="240dp"
+        android:layout_height="27dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:shadowColor="#B53232"
+        android:text="Settings"
+        android:textAlignment="center"
+        android:textSize="20sp" />
 
-        android:textSize="30sp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Last GFG Login Portal" />
+    <TextView
+        android:id="@+id/others_profile"
+        android:layout_width="240dp"
+        android:layout_height="27dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:shadowColor="#B53232"
+        android:text="Profile"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/others_contactUs"
+        android:layout_width="240dp"
+        android:layout_height="27dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:shadowColor="#B53232"
+        android:text="Contact Us"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/others_logout"
+        android:layout_width="240dp"
+        android:layout_height="27dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:shadowColor="#B53232"
+        android:text="Logout"
+        android:textAlignment="center"
+        android:textSize="20sp" />
 
-</FrameLayout>
+
+</LinearLayout>

@@ -18,7 +18,6 @@
         android:layout_marginBottom="40sp"
         android:gravity="center"
         android:text="User Name"
-
         android:textColor="#2196F3"
         android:textSize="30dp" />
 
@@ -76,14 +75,14 @@
         />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/home_searchButton"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="78dp"
 
         android:background="#03A9F4"
-        android:text="Button"
+        android:text="Search"
         app:backgroundTint="#FF5722" />
 
 

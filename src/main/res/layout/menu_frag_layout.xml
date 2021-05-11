@@ -1,18 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MenuFragment">
 
+
     <TextView
-        android:textColor="@color/design_default_color_primary"
+        android:id="@+id/menu_favoriteTickets"
+        android:layout_width="240dp"
+        android:layout_height="27dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:shadowColor="#B53232"
+        android:text="Favorite Tickets"
+        android:textAlignment="center"
+        android:textSize="20sp" />
 
-        android:textSize="30sp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Select Course by GFG" />
+    <TextView
+        android:id="@+id/menu_boughtTickets"
+        android:layout_width="240dp"
+        android:layout_height="27dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:shadowColor="#B53232"
+        android:text="Bought Tickets"
+        android:textAlignment="center"
+        android:textSize="20sp" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/menu_reservations"
+        android:layout_width="240dp"
+        android:layout_height="27dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:shadowColor="#B53232"
+        android:text="Reservation Tickets "
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/menu_previousTravels"
+        android:layout_width="240dp"
+        android:layout_height="27dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:shadowColor="#B53232"
+        android:text="Previous Travels "
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/menu_canceledTickets"
+        android:layout_width="240dp"
+        android:layout_height="27dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:shadowColor="#B53232"
+        android:text="Canceled Tickets"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+</LinearLayout>

@@ -9,7 +9,9 @@
         android:textColor="#4A0505"
         android:textSize="20dp"
         android:textStyle="bold"
-       >
+         android:gravity="center">
+        android:textAlignment="center"
+
     </TextView>
 
 

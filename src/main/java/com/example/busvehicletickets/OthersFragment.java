@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import org.jetbrains.annotations.Nullable;
 
 public class OthersFragment extends Fragment {
@@ -49,7 +51,9 @@ public class OthersFragment extends Fragment {
         logoutTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FirebaseAuth.getInstance().signOut();
+                Intent mainIntent = new Intent(getContext(), LoginActivity.class);
+                startActivity(mainIntent);
             }
         });
 

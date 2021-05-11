@@ -18,6 +18,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firestore.v1.UpdateDocumentRequest;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -31,13 +32,15 @@ public class ProfileActivity extends AppCompatActivity {
     EditText editTextPhone;
     String userId;
     EditText editTextEMail;
+    FirebaseUser firebaseUser;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         eMail = firebaseUser.getEmail();
 
@@ -70,14 +73,6 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
-
-
-
-
 
         //UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder();
 
@@ -116,6 +111,8 @@ public class ProfileActivity extends AppCompatActivity {
                         .document(userId)
                         .update("nameSurname", nameSurname , "phoneNumber", phone);
 
+                firebaseUser.updateEmail(eMail);
+                firebaseUser.updatePassword(password);
             }
             else {
                 Toast.makeText(ProfileActivity.this, "Passwords are not matching!!!", Toast.LENGTH_SHORT).show();

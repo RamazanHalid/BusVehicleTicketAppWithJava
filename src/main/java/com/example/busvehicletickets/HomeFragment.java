@@ -124,7 +124,7 @@ public class HomeFragment extends Fragment{
                         });
 
                         travelDate = (TextView) view.findViewById(R.id.travelDate);
-                        travelDate.setText( "12/05/2021");
+                        travelDate.setText( "12/5/2021");
                         travelDate.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -148,7 +148,7 @@ public class HomeFragment extends Fragment{
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                                 Log.d(TAG,"OnDateSet: date: " + dayOfMonth + "/" + month + "/"  + year);
-                                date =  dayOfMonth + "/" + month + "/"  + year;
+                                date =  dayOfMonth + "/" + (month + 1) + "/"  + year;
                                 travelDate.setText(date);
                             }
                         };

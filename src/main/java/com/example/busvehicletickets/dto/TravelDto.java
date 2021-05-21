@@ -11,6 +11,7 @@ public class TravelDto implements Serializable {
     private String date;
     private String travelTime;
     private String leavingTime;
+    private String chairNumber;
 
     public TravelDto(String fromCity, String toCity, String distance, String price, String date, String travelTime, String leavingTime) {
         this.fromCity = fromCity;
@@ -20,6 +21,14 @@ public class TravelDto implements Serializable {
         this.date = date;
         this.travelTime = travelTime;
         this.leavingTime = leavingTime;
+    }
+
+    public String getChairNumber() {
+        return chairNumber;
+    }
+
+    public void setChairNumber(String chairNumber) {
+        this.chairNumber = chairNumber;
     }
 
     public String getFromCity() {

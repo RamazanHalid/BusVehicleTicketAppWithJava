@@ -6,12 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ChairSelectActivity">
 
+    <TextView
+        android:id="@+id/front_door"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Front Door"
+        android:textSize="25dp"
+
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+
+        tools:ignore="MissingConstraints" />
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:scrollbars="vertical"
 
         tools:ignore="MissingConstraints">
+
 
         <ScrollView
             android:id="@+id/layoutSeat"
@@ -20,5 +35,7 @@
             android:layout_marginLeft="40dp"/>
 
     </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

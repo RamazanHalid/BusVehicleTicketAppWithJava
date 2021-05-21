@@ -62,7 +62,7 @@ public class SearchResultActivity extends AppCompatActivity {
 
 
         listView = (ListView) findViewById(R.id.search_resultList);
-        intent2 = new Intent(this, ResultActivity.class);
+        intent2 = new Intent(this, ChairSelectActivity.class);
 
         myRef.collection("travels")
                 .orderBy("Time", Query.Direction.ASCENDING)
@@ -93,6 +93,7 @@ public class SearchResultActivity extends AppCompatActivity {
                                                           doc.get("travelTime").toString(),
                                                           doc.get("Time").toString());
                                 intent2.putExtra("travelDetails" ,travelDto);
+
                             }
                             mAdapter = new TravelDetailsAdapter(SearchResultActivity.this, travelDetailsArrayList);
                             listView.setAdapter(mAdapter);

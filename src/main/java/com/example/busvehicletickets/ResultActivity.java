@@ -17,7 +17,7 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         Intent intent = getIntent();
-        TravelDto travelDto = (TravelDto) intent.getSerializableExtra("travelDetails");
+        TravelDto travelDto = (TravelDto) intent.getSerializableExtra("travelDetails2");
 
         TextView fromAndToCity = (TextView) findViewById(R.id.result_FromAndToCities);
         fromAndToCity.setText(travelDto.getFromCity().toUpperCase() + " ---> " + travelDto.getToCity().toUpperCase());
@@ -36,7 +36,13 @@ public class ResultActivity extends AppCompatActivity {
 
 
         TextView chairNumber = (TextView) findViewById(R.id.result_chairNumber);
-        travelDto.setChairNumber("34");
+        //travelDto.setChairNumber("34");
+
+        Intent intent2 = getIntent();
+        String seatNumber = intent2.getStringExtra("seatNumber");
+
+
+        travelDto.setChairNumber(seatNumber);
         chairNumber.setText("Chair Number\n" + travelDto.getChairNumber());
 
         TextView price = (TextView) findViewById(R.id.result_price);

@@ -38,8 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
          mAuth = FirebaseAuth.getInstance();
          myRef = FirebaseFirestore.getInstance();
-        Intent mainIntent2 = new Intent(this, ChairSelectActivity.class);
-        startActivity(mainIntent2);
+
     }
     @Override
     protected void onStart() {

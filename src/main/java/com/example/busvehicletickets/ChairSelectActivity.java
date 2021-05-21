@@ -2,6 +2,7 @@ package com.example.busvehicletickets;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -12,12 +13,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.busvehicletickets.dto.TravelDto;
+
+import java.lang.reflect.Field;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChairSelectActivity extends AppCompatActivity implements View.OnClickListener {
     ViewGroup layout;
-
+    private Intent intent;
+    private Intent intentFromSearchToResult;
     String seats = "_________________/"
             + "UU__RR/"
             + "UU__AA/"
@@ -45,6 +52,11 @@ public class ChairSelectActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chair_select);
         layout = findViewById(R.id.layoutSeat);
+
+        intent = new Intent(this, ResultActivity.class);
+        intentFromSearchToResult = getIntent();
+        TravelDto travelDto2= (TravelDto) intentFromSearchToResult.getSerializableExtra("travelDetails");
+        intent.putExtra("travelDetails2", travelDto2);
 
         seats = "/" + seats;
 
@@ -129,13 +141,13 @@ public class ChairSelectActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         if ((int) view.getTag() == STATUS_AVAILABLE) {
-            if (selectedIds.contains(view.getId() + ",")) {
-                selectedIds = selectedIds.replace(+view.getId() + ",", "");
-                view.setBackgroundResource(R.drawable.ic_seats_book);
-            } else {
-                selectedIds = selectedIds + view.getId() + ",";
-                view.setBackgroundResource(R.drawable.ic_seats_selected);
-            }
+            String seatNumber = new String();
+            seatNumber = String.valueOf(view.getId()) ;
+            System.out.println(seatNumber);
+            intent.putExtra("seatNumber", seatNumber);
+            startActivity(intent);
+
+
         } else if ((int) view.getTag() == STATUS_BOOKED) {
             Toast.makeText(this, "Seat " + view.getId() + " is Booked", Toast.LENGTH_SHORT).show();
         } else if ((int) view.getTag() == STATUS_RESERVED) {

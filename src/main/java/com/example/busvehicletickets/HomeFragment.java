@@ -63,6 +63,8 @@ public class HomeFragment extends Fragment{
 
         String userId = getActivity().getIntent().getExtras().getString("userId");
         TextView textView = (TextView) view.findViewById(R.id.homepage_textViewUser);
+
+
         myRef.collection("users")
                 .document(userId)
                 .get()

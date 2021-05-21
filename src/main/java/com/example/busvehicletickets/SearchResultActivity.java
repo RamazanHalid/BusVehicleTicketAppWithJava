@@ -6,11 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.busvehicletickets.dto.TravelDto;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -18,6 +21,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +32,10 @@ public class SearchResultActivity extends AppCompatActivity {
     private static ArrayList<TravelDetails> travelDetailsArrayList;
     private static List<String> results;
     private TravelDetailsAdapter mAdapter;
+    private ListView listView;
+
+    private Intent intent2;
+    private TravelDto travelDto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +60,9 @@ public class SearchResultActivity extends AppCompatActivity {
         dateTravelTextVIew.setText(dateTravel);
 
 
-        ListView listView = (ListView) findViewById(R.id.search_resultList);
+
+        listView = (ListView) findViewById(R.id.search_resultList);
+        intent2 = new Intent(this, ResultActivity.class);
 
         myRef.collection("travels")
                 .orderBy("Time", Query.Direction.ASCENDING)
@@ -75,10 +85,19 @@ public class SearchResultActivity extends AppCompatActivity {
                                 travelDetailsArrayList.add(new TravelDetails(doc.get("distance").toString() +"km",
                                         doc.get("price") + "TL", doc.get("travelTime") + "h", doc.get("Time").toString()));
 
-
+                                travelDto = new TravelDto(doc.get("fromCity").toString(),
+                                                          doc.get("toCity").toString(),
+                                                          doc.get("distance").toString(),
+                                                          doc.get("price").toString(),
+                                                          doc.get("Date").toString(),
+                                                          doc.get("travelTime").toString(),
+                                                          doc.get("Time").toString());
+                                intent2.putExtra("travelDetails" ,travelDto);
                             }
                             mAdapter = new TravelDetailsAdapter(SearchResultActivity.this, travelDetailsArrayList);
                             listView.setAdapter(mAdapter);
+                            listView.setOnItemClickListener(listClick);
+
                         } else {
 
                             System.out.println("*************************************************************");
@@ -92,4 +111,14 @@ public class SearchResultActivity extends AppCompatActivity {
 
 
     }
+    private AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+           // String itemValue = (String) listView.getItemAtPosition(position);
+            //intent2.putExtra("Selected_Value", "ramo35");
+            startActivity(intent2);
+
+        }
+    };
+
 }

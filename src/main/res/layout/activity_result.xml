@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
-
+            android:onClick="buyTheTicket"
             android:background="#03A9F4"
             android:text="Buy"
             app:backgroundTint="#FF5722" />

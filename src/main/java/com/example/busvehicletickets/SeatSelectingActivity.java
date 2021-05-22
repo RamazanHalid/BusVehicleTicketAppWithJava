@@ -30,6 +30,7 @@ public class SeatSelectingActivity extends AppCompatActivity implements View.OnC
     private Intent intent;
     private Intent intentFromSearchToResult;
     FirebaseFirestore myRef = FirebaseFirestore.getInstance();
+    private String selectedDocumentIdFromSearchResultActivity;
 
 
     List<TextView> seatViewList = new ArrayList<>();
@@ -46,7 +47,7 @@ public class SeatSelectingActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_seat_selecting);
         layout = findViewById(R.id.layoutSeat);
         intentFromSearchToResult = getIntent();
-        String selectedDocumentIdFromSearchResultActivity = intentFromSearchToResult.getStringExtra("travelDocumentId");
+        selectedDocumentIdFromSearchResultActivity = intentFromSearchToResult.getStringExtra("travelDocumentId");
 
         myRef.collection("travels")
                 .document(selectedDocumentIdFromSearchResultActivity)
@@ -110,6 +111,7 @@ public class SeatSelectingActivity extends AppCompatActivity implements View.OnC
             seatNumber = String.valueOf(view.getId()) ;
             System.out.println(seatNumber);
             intent.putExtra("seatNumber", seatNumber);
+            intent.putExtra("travelDocumentId", selectedDocumentIdFromSearchResultActivity);
             startActivity(intent);
 
 

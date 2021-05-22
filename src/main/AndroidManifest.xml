@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BusVehicleTickets">
-        <activity android:name=".ChairSelectActivity"></activity>
+        <activity android:name=".SeatSelectingActivity"></activity>
         <activity android:name=".ResultActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".BoughtTicketActivity" />

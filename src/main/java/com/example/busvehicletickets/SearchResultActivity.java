@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,7 +18,6 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -62,7 +58,7 @@ public class SearchResultActivity extends AppCompatActivity {
 
 
         listView = (ListView) findViewById(R.id.search_resultList);
-        intent2 = new Intent(this, ChairSelectActivity.class);
+        intent2 = new Intent(this, SeatSelectingActivity.class);
 
         myRef.collection("travels")
                 .orderBy("Time", Query.Direction.ASCENDING)

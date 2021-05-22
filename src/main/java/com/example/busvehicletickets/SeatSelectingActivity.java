@@ -19,35 +19,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.lang.reflect.Field;
 
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ChairSelectActivity extends AppCompatActivity implements View.OnClickListener {
+public class SeatSelectingActivity extends AppCompatActivity implements View.OnClickListener {
     ViewGroup layout;
     private Intent intent;
     private Intent intentFromSearchToResult;
     FirebaseFirestore myRef = FirebaseFirestore.getInstance();
-    String seats = "_________________/"
-            + "UU__AR/"
-            + "UU__AA/";
-           /* + "AA__AA/"
-            + "AA__AA/"
-            + "UU__AA/"
-            + "AA__UU/"
-            + "______/"
-            + "UU__RR/"
-            + "RR__AA/"
-            + "AA__AA/"
-            + "AA__AA/"
-            + "_________________/";*/
+
 
     List<TextView> seatViewList = new ArrayList<>();
     int seatSize = 100;
@@ -60,7 +43,7 @@ public class ChairSelectActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chair_select);
+        setContentView(R.layout.activity_seat_selecting);
         layout = findViewById(R.id.layoutSeat);
         intentFromSearchToResult = getIntent();
         String selectedDocumentIdFromSearchResultActivity = intentFromSearchToResult.getStringExtra("travelDocumentId");
@@ -80,7 +63,6 @@ public class ChairSelectActivity extends AppCompatActivity implements View.OnCli
                                 .replaceAll("\\]", "")
                                 .replaceAll("[{}]","")
                                 .replaceAll(" ", "");
-                                //System.out.println(result);
                                  String[] result2 = result.split(",");
                                 HashMap<Integer, String> map2 = new HashMap<>();
 

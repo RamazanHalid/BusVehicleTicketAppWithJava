@@ -1,24 +1,32 @@
 package com.example.busvehicletickets;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.busvehicletickets.dto.TicketDto;
 import com.example.busvehicletickets.dto.TravelDto;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class ResultActivity extends AppCompatActivity {
@@ -26,6 +34,8 @@ public class ResultActivity extends AppCompatActivity {
     private String travelDocumentIdFromResultPage;
     private FirebaseFirestore myRef = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private String statusOfTicket;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +43,7 @@ public class ResultActivity extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
-
+        user   = mAuth.getCurrentUser();
         Intent intent = getIntent();
         travelDto = (TravelDto) intent.getSerializableExtra("travelDetails2");
         travelDocumentIdFromResultPage = intent.getStringExtra("travelDocumentId");
@@ -71,14 +81,38 @@ public class ResultActivity extends AppCompatActivity {
 
 
 
+
     }
     public void buyTheTicket(View view){
-        FirebaseUser user = mAuth.getCurrentUser();
+
         TicketDto ticketDto = new TicketDto(travelDocumentIdFromResultPage,"bought",travelDto);
-        ArrayList<TicketDto> ticketDtoArrayList = new ArrayList<>();
-        ticketDtoArrayList.add(ticketDto);
+
         myRef.collection("users")
                 .document(user.getUid())
                 .update("ticketDtoArrayList", FieldValue.arrayUnion(ticketDto));
+
+       doSeatUnavailable(travelDto.getChairNumber(),"booked");
+        Toast.makeText(this, "Ticket BOUGHT!", Toast.LENGTH_LONG).show();
+    }
+
+    public void doSeatUnavailable(String seatNumberM, String statusOfTicketM){
+        myRef.collection("travels")
+                .document(travelDocumentIdFromResultPage)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                        ArrayList<HashMap<String,Object>> resultList = (ArrayList<HashMap<String, Object>>) task.getResult().get("seats");
+                        resultList.get(0).replace(seatNumberM ,statusOfTicketM);
+                        myRef.collection("travels")
+                                .document(travelDocumentIdFromResultPage)
+                                .update("seats", resultList);
+
+
+
+                    }
+                });
     }
 }

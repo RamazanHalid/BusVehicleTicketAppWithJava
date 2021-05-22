@@ -16,25 +16,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.busvehicletickets.dto.AllInformationOfUser;
+import com.example.busvehicletickets.dto.TicketDto;
 import com.example.busvehicletickets.dto.User;
+import com.example.busvehicletickets.dto.UserDto;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 
 public class RegisterActivity extends AppCompatActivity {
    static  FirebaseAuth mAuth;
@@ -97,7 +96,6 @@ public class RegisterActivity extends AppCompatActivity {
             userGender = userGender.replaceAll("\\s+", "");
 
 
-
             if (!(email.equals("") ||
                     password.equals("") ||
                     confirmPassword.equals("") ||
@@ -105,7 +103,8 @@ public class RegisterActivity extends AppCompatActivity {
                     phoneNumber.equals("") ||
                     userGender.equals("")
             )) {
-                User user = new User(personNameSurname, phoneNumber, userGender);
+                ArrayList<TicketDto> ticketDtos = new ArrayList<>();
+                UserDto userDto = new UserDto(personNameSurname, phoneNumber, userGender,ticketDtos);
 
                 if (!password.equals(confirmPassword)) {
                     Toast.makeText(RegisterActivity.this, "Password and Confirm password must be the same", Toast.LENGTH_SHORT).show();
@@ -118,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 String userId = mAuth.getUid();
                                 myRef.collection("users")
                                         .document(userId)
-                                        .set(user);
+                                        .set(userDto);
 
 
                                 Toast.makeText(RegisterActivity.this, "Account  created successfully!", Toast.LENGTH_SHORT).show();

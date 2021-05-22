@@ -111,8 +111,6 @@ public class SearchResultActivity extends AppCompatActivity {
     private AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-           // String itemValue = (String) listView.getItemAtPosition(position);
-            //intent2.putExtra("Selected_Value", "ramo35");
             startActivity(intent2);
 
         }

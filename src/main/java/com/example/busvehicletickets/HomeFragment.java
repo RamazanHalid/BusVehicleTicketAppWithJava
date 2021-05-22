@@ -49,6 +49,8 @@ public class HomeFragment extends Fragment{
     private TextView travelDate;
     private String toCity;
     private String fromCity;
+
+    private ArrayList<String> cities;
     private DatePickerDialog.OnDateSetListener dataSetListener;
 
 
@@ -75,110 +77,120 @@ public class HomeFragment extends Fragment{
                         String nameSurname =task.getResult().get("nameSurname").toString();
                         String phoneNumber =task.getResult().get("phoneNumber").toString();
                         String gender =task.getResult().get("gender").toString();
-                        user = new User(nameSurname,phoneNumber,gender);
-                        textView.setText("Welcome \n" + nameSurname);
 
-                        System.out.println("***********************");
+                        user = new User(nameSurname,phoneNumber,gender);
+                        textView.setText("Welcome \n" + user.nameSurname);
+
+
                         spinnerFrom = view.findViewById(R.id.home_spinnerFrom);
                         spinnerTo = view.findViewById(R.id.home_spinnerTo);
 
+                        myRef.collection("cities")
+                                .document("nlPoVpGAxwoNDY67ICXj")
+                                .get()
+                                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            DocumentSnapshot document = task.getResult();
 
-                        List<String> cities = new ArrayList<>();
-                        cities.add("izmir");
-                        cities.add("istanbul");
-                        cities.add("antalya");
+                                            cities = (ArrayList<String>) document.get("cities");
+                                            System.out.println(cities.toString());
+                                        }
 
+                                        //style and populate the spinner
+                                        ArrayAdapter<String> dataAdapter;
+                                        dataAdapter = new ArrayAdapter(getContext(),R.layout.my_list, cities);
 
-                        //style and populate the spinner
-                        ArrayAdapter<String> dataAdapter;
-                        dataAdapter = new ArrayAdapter(getContext(),R.layout.my_list, cities);
+                                        //Dropdown layout style
+                                        dataAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
-                        //Dropdown layout style
-                        dataAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+                                        //attaching data adapter to spinner
+                                        spinnerFrom.setAdapter(dataAdapter);
+                                        spinnerFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                            @Override
+                                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                //on selecting a spinner
+                                                fromCity = parent.getItemAtPosition(position).toString();
+                                            }
 
-                        //attaching data adapter to spinner
-                        spinnerFrom.setAdapter(dataAdapter);
-                        spinnerFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                //on selecting a spinner
-                                fromCity = parent.getItemAtPosition(position).toString();
+                                            @Override
+                                            public void onNothingSelected(AdapterView<?> parent) {
 
+                                            }
+                                        });
+                                        spinnerTo.setAdapter(dataAdapter);
+                                        spinnerTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                            @Override
+                                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                toCity = parent.getItemAtPosition(position).toString();
+                                            }
 
-                            }
+                                            @Override
+                                            public void onNothingSelected(AdapterView<?> parent) {
 
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
+                                            }
+                                        });
 
-                            }
-                        });
-                        spinnerTo.setAdapter(dataAdapter);
-                        spinnerTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                toCity = parent.getItemAtPosition(position).toString();
-                                                            }
+                                        travelDate = (TextView) view.findViewById(R.id.travelDate);
+                                        travelDate.setText( "12/5/2021");
+                                        travelDate.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
 
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
-
-                            }
-                        });
-
-                        travelDate = (TextView) view.findViewById(R.id.travelDate);
-                        travelDate.setText( "12/5/2021");
-                        travelDate.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                                Calendar cal = Calendar.getInstance();
-
-
-                                int year = cal.get(Calendar.YEAR);
-                                int month = cal.get(Calendar.MONTH);
-                                int day = cal.get(Calendar.DAY_OF_MONTH);
-                                DatePickerDialog dialog = new DatePickerDialog(getContext(),
-                                        R.style.Theme_MaterialComponents_DayNight_Dialog_MinWidth_Bridge,
-                                        dataSetListener,
-                                        day,month,year);
-                                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.GREEN));
-                                dialog.show();
-                            }
-                        });
-                        dataSetListener  = new DatePickerDialog.OnDateSetListener(){
-
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                Log.d(TAG,"OnDateSet: date: " + dayOfMonth + "/" + month + "/"  + year);
-                                date =  dayOfMonth + "/" + (month + 1) + "/"  + year;
-                                travelDate.setText(date);
-                            }
-                        };
+                                                Calendar cal = Calendar.getInstance();
 
 
-                        Button searchButton = (Button) view.findViewById(R.id.home_searchButton);
-                        searchButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if (travelDate ==null){
-                                    Toast.makeText(getContext(), "Travel date can not be EMPTY!", Toast.LENGTH_SHORT).show();
+                                                int year = cal.get(Calendar.YEAR);
+                                                int month = cal.get(Calendar.MONTH);
+                                                int day = cal.get(Calendar.DAY_OF_MONTH);
+                                                DatePickerDialog dialog = new DatePickerDialog(getContext(),
+                                                        R.style.Theme_MaterialComponents_DayNight_Dialog_MinWidth_Bridge,
+                                                        dataSetListener,
+                                                        day,month,year);
+                                                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.GREEN));
+                                                dialog.show();
+                                            }
+                                        });
+                                        dataSetListener  = new DatePickerDialog.OnDateSetListener(){
 
-                                }
-                                else {
-                                    Intent intent = new Intent(getContext(), SearchResultActivity.class);
-                                    String travelDateString = travelDate.getText().toString();
+                                            @Override
+                                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                                Log.d(TAG,"OnDateSet: date: " + dayOfMonth + "/" + month + "/"  + year);
+                                                date =  dayOfMonth + "/" + (month + 1) + "/"  + year;
+                                                travelDate.setText(date);
+                                            }
+                                        };
 
-                                    intent.putExtra("travelDate", travelDateString);
-                                    intent.putExtra("toCity", toCity);
-                                    intent.putExtra("fromCity", fromCity);
-                                    startActivity(intent);
 
-                                }
+                                        Button searchButton = (Button) view.findViewById(R.id.home_searchButton);
+                                        searchButton.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                if (travelDate ==null){
+                                                    Toast.makeText(getContext(), "Travel date can not be EMPTY!", Toast.LENGTH_SHORT).show();
 
-                            }
-                        });
+                                                }
+                                                else {
+                                                    Intent intent = new Intent(getContext(), SearchResultActivity.class);
+                                                    String travelDateString = travelDate.getText().toString();
+
+                                                    intent.putExtra("travelDate", travelDateString);
+                                                    intent.putExtra("toCity", toCity);
+                                                    intent.putExtra("fromCity", fromCity);
+                                                    startActivity(intent);
+
+                                                }
+
+                                            }
+                                        });
+                                    }
+                                });
+
                     }
-                });
+                                });
+
+
 
 
 

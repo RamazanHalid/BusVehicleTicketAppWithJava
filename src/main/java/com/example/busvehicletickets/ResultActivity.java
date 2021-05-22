@@ -19,7 +19,7 @@ public class ResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
         TravelDto travelDto = (TravelDto) intent.getSerializableExtra("travelDetails2");
 
-        /*TextView fromAndToCity = (TextView) findViewById(R.id.result_FromAndToCities);
+        TextView fromAndToCity = (TextView) findViewById(R.id.result_FromAndToCities);
         fromAndToCity.setText(travelDto.getFromCity().toUpperCase() + " ---> " + travelDto.getToCity().toUpperCase());
 
         TextView dateOfTravel = (TextView) findViewById(R.id.result_dateOfTravel);
@@ -37,18 +37,17 @@ public class ResultActivity extends AppCompatActivity {
 
 
         //travelDto.setChairNumber("34");
-*/
+
         TextView chairNumber = (TextView) findViewById(R.id.result_chairNumber);
         Intent intent2 = getIntent();
         String seatNumber = intent2.getStringExtra("seatNumber");
 
-        chairNumber.setText("Chair Number\n" + seatNumber);
-//        travelDto.setChairNumber(seatNumber);
- //       chairNumber.setText("Chair Number\n" + travelDto.getChairNumber());
 
-      /*  TextView price = (TextView) findViewById(R.id.result_price);
+        travelDto.setChairNumber(seatNumber);
+        chairNumber.setText("Chair Number\n" + travelDto.getChairNumber());
+
+        TextView price = (TextView) findViewById(R.id.result_price);
         price.setText("Price\n" + travelDto.getPrice() + "TL");
-*/
 
 
     }

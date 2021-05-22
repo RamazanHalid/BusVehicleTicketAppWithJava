@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Field;
 
@@ -60,9 +62,11 @@ public class ChairSelectActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chair_select);
         layout = findViewById(R.id.layoutSeat);
+        intentFromSearchToResult = getIntent();
+        String selectedDocumentIdFromSearchResultActivity = intentFromSearchToResult.getStringExtra("travelDocumentId");
 
         myRef.collection("travels")
-                .document("4Cd13lUbWWbhCQOcwah1")
+                .document(selectedDocumentIdFromSearchResultActivity)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -92,38 +96,27 @@ public class ChairSelectActivity extends AppCompatActivity implements View.OnCli
                                     else
                                         System.out.println("There is a problem in AUR");
                                 }
-                                String ramazan ="_________________/";
+                                String seatDesign ="_________________/";
                                 for (int i = 1; i < map2.size() + 1 ; i++) {
 
                                     if (i%2 ==0){
                                         if (i%4==0)
-                                        ramazan += map2.get(i) + "/";
+                                            seatDesign += map2.get(i) + "/";
                                         else
-                                        ramazan += map2.get(i) + "__";
+                                            seatDesign += map2.get(i) + "__";
 
                                     }
                                     else {
-                                        ramazan += map2.get(i);
+                                        seatDesign += map2.get(i);
                                     }
                                 }
-                                System.out.println(ramazan);
-                                meth(ramazan);
+
+                                meth(seatDesign);
 
                             }
                         }
                     }
                 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -146,9 +139,9 @@ public class ChairSelectActivity extends AppCompatActivity implements View.OnCli
     }
     public void meth(String seats){
         intent = new Intent(this, ResultActivity.class);
-        //intentFromSearchToResult = getIntent();
-        // TravelDto travelDto2= (TravelDto) intentFromSearchToResult.getSerializableExtra("travelDetails");
-        //intent.putExtra("travelDetails2", travelDto2);
+
+        TravelDto travelDto2= (TravelDto) intentFromSearchToResult.getSerializableExtra("travelDetails");
+        intent.putExtra("travelDetails2", travelDto2);
 
         seats = "/" + seats;
 

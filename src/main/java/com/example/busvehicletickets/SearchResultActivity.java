@@ -93,7 +93,7 @@ public class SearchResultActivity extends AppCompatActivity {
                                                           doc.get("travelTime").toString(),
                                                           doc.get("Time").toString());
                                 intent2.putExtra("travelDetails" ,travelDto);
-
+                                intent2.putExtra("travelDocumentId",document.getId());
                             }
                             mAdapter = new TravelDetailsAdapter(SearchResultActivity.this, travelDetailsArrayList);
                             listView.setAdapter(mAdapter);

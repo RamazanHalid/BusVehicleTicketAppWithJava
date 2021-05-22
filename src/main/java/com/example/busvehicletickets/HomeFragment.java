@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.busvehicletickets.dto.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -49,7 +50,7 @@ public class HomeFragment extends Fragment{
     private TextView travelDate;
     private String toCity;
     private String fromCity;
-
+    private FirebaseAuth mAuth;
     private ArrayList<String> cities;
     private DatePickerDialog.OnDateSetListener dataSetListener;
 
@@ -63,7 +64,9 @@ public class HomeFragment extends Fragment{
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),R.layout.my_list , contents1);
 
-        String userId = getActivity().getIntent().getExtras().getString("userId");
+        //String userId = getActivity().getIntent().getExtras().getString("userId");
+        mAuth = FirebaseAuth.getInstance();
+        String userId = mAuth.getCurrentUser().getUid();
         TextView textView = (TextView) view.findViewById(R.id.homepage_textViewUser);
 
 

@@ -36,6 +36,7 @@ public class ResultActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private String statusOfTicket;
+    private Intent toSearchPageIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +93,8 @@ public class ResultActivity extends AppCompatActivity {
                 .update("ticketDtoArrayList", FieldValue.arrayUnion(ticketDto));
 
        doSeatUnavailable(travelDto.getChairNumber(),"booked");
+       toSearchPageIntent = new Intent(ResultActivity.this,MainActivity2.class);
+       startActivity(toSearchPageIntent);
         Toast.makeText(this, "Ticket BOUGHT!", Toast.LENGTH_LONG).show();
     }
 

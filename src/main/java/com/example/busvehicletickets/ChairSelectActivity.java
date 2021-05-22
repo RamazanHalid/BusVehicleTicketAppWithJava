@@ -1,5 +1,6 @@
 package com.example.busvehicletickets;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,21 +15,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.busvehicletickets.dto.TravelDto;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.lang.reflect.Field;
 
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ChairSelectActivity extends AppCompatActivity implements View.OnClickListener {
     ViewGroup layout;
     private Intent intent;
     private Intent intentFromSearchToResult;
+    FirebaseFirestore myRef = FirebaseFirestore.getInstance();
     String seats = "_________________/"
-            + "UU__RR/"
-            + "UU__AA/"
-            + "AA__AA/"
+            + "UU__AR/"
+            + "UU__AA/";
+           /* + "AA__AA/"
             + "AA__AA/"
             + "UU__AA/"
             + "AA__UU/"
@@ -37,7 +45,7 @@ public class ChairSelectActivity extends AppCompatActivity implements View.OnCli
             + "RR__AA/"
             + "AA__AA/"
             + "AA__AA/"
-            + "_________________/";
+            + "_________________/";*/
 
     List<TextView> seatViewList = new ArrayList<>();
     int seatSize = 100;
@@ -53,10 +61,94 @@ public class ChairSelectActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_chair_select);
         layout = findViewById(R.id.layoutSeat);
 
+        myRef.collection("travels")
+                .document("4Cd13lUbWWbhCQOcwah1")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                ArrayList<String> list = (ArrayList<String>) document.get("seats");
+                                String result = list.toString();
+                                result = result.replaceAll("\\[", "")
+                                .replaceAll("\\]", "")
+                                .replaceAll("[{}]","")
+                                .replaceAll(" ", "");
+                                //System.out.println(result);
+                                 String[] result2 = result.split(",");
+                                HashMap<Integer, String> map2 = new HashMap<>();
+
+                                for (String q: result2 ) {
+                                    String[] result3 = q.split("=");
+                                    int numberOfSeatInFirestore = Integer.parseInt(result3[0]);
+                                    if (result3[1].equals("reserved"))
+                                        map2.put(numberOfSeatInFirestore, "R");
+                                    else if (result3[1].equals("booked"))
+                                        map2.put(numberOfSeatInFirestore, "U");
+                                    else if (result3[1].equals("available"))
+                                        map2.put(numberOfSeatInFirestore, "A");
+                                    else
+                                        System.out.println("There is a problem in AUR");
+                                }
+                                String ramazan ="_________________/";
+                                for (int i = 1; i < map2.size() + 1 ; i++) {
+
+                                    if (i%2 ==0){
+                                        if (i%4==0)
+                                        ramazan += map2.get(i) + "/";
+                                        else
+                                        ramazan += map2.get(i) + "__";
+
+                                    }
+                                    else {
+                                        ramazan += map2.get(i);
+                                    }
+                                }
+                                System.out.println(ramazan);
+                                meth(ramazan);
+
+                            }
+                        }
+                    }
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+    @Override
+    public void onClick(View view) {
+        if ((int) view.getTag() == STATUS_AVAILABLE) {
+            String seatNumber = new String();
+            seatNumber = String.valueOf(view.getId()) ;
+            System.out.println(seatNumber);
+            intent.putExtra("seatNumber", seatNumber);
+            startActivity(intent);
+
+
+        } else if ((int) view.getTag() == STATUS_BOOKED) {
+            Toast.makeText(this, "Seat " + view.getId() + " is Booked", Toast.LENGTH_SHORT).show();
+        } else if ((int) view.getTag() == STATUS_RESERVED) {
+            Toast.makeText(this, "Seat " + view.getId() + " is Reserved", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void meth(String seats){
         intent = new Intent(this, ResultActivity.class);
-        intentFromSearchToResult = getIntent();
-        TravelDto travelDto2= (TravelDto) intentFromSearchToResult.getSerializableExtra("travelDetails");
-        intent.putExtra("travelDetails2", travelDto2);
+        //intentFromSearchToResult = getIntent();
+        // TravelDto travelDto2= (TravelDto) intentFromSearchToResult.getSerializableExtra("travelDetails");
+        //intent.putExtra("travelDetails2", travelDto2);
 
         seats = "/" + seats;
 
@@ -136,22 +228,6 @@ public class ChairSelectActivity extends AppCompatActivity implements View.OnCli
                 view.setText("");
                 layout.addView(view);
             }
-        }
-    }
-    @Override
-    public void onClick(View view) {
-        if ((int) view.getTag() == STATUS_AVAILABLE) {
-            String seatNumber = new String();
-            seatNumber = String.valueOf(view.getId()) ;
-            System.out.println(seatNumber);
-            intent.putExtra("seatNumber", seatNumber);
-            startActivity(intent);
-
-
-        } else if ((int) view.getTag() == STATUS_BOOKED) {
-            Toast.makeText(this, "Seat " + view.getId() + " is Booked", Toast.LENGTH_SHORT).show();
-        } else if ((int) view.getTag() == STATUS_RESERVED) {
-            Toast.makeText(this, "Seat " + view.getId() + " is Reserved", Toast.LENGTH_SHORT).show();
         }
     }
 }

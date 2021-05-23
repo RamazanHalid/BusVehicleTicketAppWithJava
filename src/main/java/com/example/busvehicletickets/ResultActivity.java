@@ -80,6 +80,24 @@ public class ResultActivity extends AppCompatActivity {
 
 
 
+        TextView reserveTheTicket = (TextView) findViewById(R.id.result_getReserve);
+        reserveTheTicket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TicketDto ticketDto = new TicketDto(travelDocumentIdFromResultPage,"reserved",travelDto);
+                myRef.collection("users")
+                        .document(user.getUid())
+                        .update("ticketDtoArrayList", FieldValue.arrayUnion(ticketDto));
+
+
+                doSeatUnavailable(travelDto.getChairNumber(), "reserved");
+                toSearchPageIntent = new Intent(ResultActivity.this,MainActivity2.class);
+                startActivity(toSearchPageIntent);
+                Toast.makeText(ResultActivity.this, "Ticket has RESERVED!", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
+
 
 
 
@@ -96,6 +114,7 @@ public class ResultActivity extends AppCompatActivity {
        toSearchPageIntent = new Intent(ResultActivity.this,MainActivity2.class);
        startActivity(toSearchPageIntent);
         Toast.makeText(this, "Ticket BOUGHT!", Toast.LENGTH_LONG).show();
+        finish();
     }
 
     public void doSeatUnavailable(String seatNumberM, String statusOfTicketM){

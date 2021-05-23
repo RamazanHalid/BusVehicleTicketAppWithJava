@@ -114,6 +114,7 @@ public class SeatSelectingActivity extends AppCompatActivity implements View.OnC
             intent.putExtra("seatNumber", seatNumber);
             intent.putExtra("travelDocumentId", selectedDocumentIdFromSearchResultActivity);
             startActivity(intent);
+            finish();
 
 
         } else if ((int) view.getTag() == STATUS_BOOKED) {

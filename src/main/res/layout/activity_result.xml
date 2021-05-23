@@ -98,7 +98,7 @@
             app:backgroundTint="#FF5722" />
 
         <TextView
-            android:id="@+id/result_addFavorite"
+            android:id="@+id/result_getReserve"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -108,7 +108,7 @@
             android:textSize="20dp" />
 
         <TextView
-            android:id="@+id/result_getReserve"
+            android:id="@+id/result_addFavorite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"

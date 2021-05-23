@@ -14,7 +14,9 @@ public class UserDto {
         this.gender = gender;
         this.ticketDtoArrayList = ticketDtoArrayList;
     }
+    public UserDto(){
 
+    }
     public String getNameSurname() {
         return nameSurname;
     }

@@ -78,6 +78,21 @@ public class ResultActivity extends AppCompatActivity {
         TextView price = (TextView) findViewById(R.id.result_price);
         price.setText("Price\n" + travelDto.getPrice() + "TL");
 
+        TextView addTicketToFavorite = (TextView) findViewById(R.id.result_addFavorite);
+        addTicketToFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TicketDto ticketDto = new TicketDto(travelDocumentIdFromResultPage,"favorite",travelDto);
+
+                myRef.collection("users")
+                        .document(user.getUid())
+                        .update("ticketDtoArrayList", FieldValue.arrayUnion(ticketDto));
+                toSearchPageIntent = new Intent(ResultActivity.this,MainActivity2.class);
+                startActivity(toSearchPageIntent);
+                Toast.makeText(ResultActivity.this, "Ticket added to favorite!", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
 
 
         TextView reserveTheTicket = (TextView) findViewById(R.id.result_getReserve);

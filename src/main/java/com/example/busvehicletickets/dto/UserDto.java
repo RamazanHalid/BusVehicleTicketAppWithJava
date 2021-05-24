@@ -48,4 +48,5 @@ public class UserDto {
     public void setTicketDtoArrayList(ArrayList<TicketDto> ticketDtoArrayList) {
         this.ticketDtoArrayList = ticketDtoArrayList;
     }
+
 }

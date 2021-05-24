@@ -13,6 +13,10 @@ public class TravelDto implements Serializable {
     private String leavingTime;
     private String chairNumber;
 
+    public TravelDto(){
+
+    }
+
     public TravelDto(String fromCity, String toCity, String distance, String price, String date, String travelTime, String leavingTime) {
         this.fromCity = fromCity;
         this.toCity = toCity;

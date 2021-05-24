@@ -14,7 +14,9 @@ import android.widget.Toast;
 
 import com.example.busvehicletickets.dto.TicketDto;
 import com.example.busvehicletickets.dto.TravelDto;
+import com.example.busvehicletickets.dto.UserDto;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,6 +39,7 @@ public class ResultActivity extends AppCompatActivity {
     private FirebaseUser user;
     private String statusOfTicket;
     private Intent toSearchPageIntent;
+    private UserDto userDto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +135,7 @@ public class ResultActivity extends AppCompatActivity {
         finish();
     }
 
+
     public void doSeatUnavailable(String seatNumberM, String statusOfTicketM){
         myRef.collection("travels")
                 .document(travelDocumentIdFromResultPage)
@@ -152,4 +156,5 @@ public class ResultActivity extends AppCompatActivity {
                     }
                 });
     }
+
 }

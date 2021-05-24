@@ -5,6 +5,10 @@ public class TicketDto {
     private String statusOfTicket;
     private TravelDto travelDto;
 
+    public TicketDto(){
+
+    }
+
     public TicketDto(String travelId, String statusOfTicket, TravelDto travelDto) {
         this.travelId = travelId;
         this.statusOfTicket = statusOfTicket;

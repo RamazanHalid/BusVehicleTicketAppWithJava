@@ -19,11 +19,12 @@
             android:id="@+id/nothing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="   Leaving Date|Distance | Travel Time | Price"
+            android:text="Date    |   FromCity   |   ToCity   |  Time"
             android:textSize="20dp"
+
             android:layout_marginTop="40dp"
             android:layout_marginBottom="30dp"
-            />
+            android:gravity="center_horizontal" />
 
 
         <ListView

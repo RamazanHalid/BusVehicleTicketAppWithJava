@@ -38,7 +38,8 @@ public class LoginActivity extends AppCompatActivity {
 
          mAuth = FirebaseAuth.getInstance();
          myRef = FirebaseFirestore.getInstance();
-        Intent intent = new Intent(this, ReservedTicketActivity.class);
+
+        Intent intent = new Intent(this, FavoriteTicketActivity.class);
         startActivity(intent);
     }
     @Override

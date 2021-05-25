@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BusVehicleTickets">
-        <activity android:name=".ReservedTicketActivity"></activity>
+        <activity android:name=".FavoriteTicketActivity"></activity>
+        <activity android:name=".ReservedTicketActivity" />
         <activity android:name=".Deneme35Activity" />
         <activity android:name=".SeatSelectingActivity" />
         <activity android:name=".ResultActivity" />

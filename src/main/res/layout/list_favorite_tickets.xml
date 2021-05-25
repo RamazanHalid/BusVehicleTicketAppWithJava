@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/wwwq"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:textAlignment="center"
+    >
+
+    <TableRow
+        android:id="@+id/listBoughtRoww"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+
+
+        android:background="#FBCB83">
+
+        <TextView
+            android:id="@+id/favorite_textView_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:textSize="23sp"
+
+
+            />
+
+        <TextView
+            android:id="@+id/favorite_textView_from"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_toRightOf="@id/favorite_textView_date"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/favorite_textView_to"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_toRightOf="@id/favorite_textView_from"
+            android:layout_weight="1"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/favorite_textView_leavingTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_toRightOf="@id/favorite_textView_to"
+            android:layout_weight="1"
+            android:textSize="20sp" />
+
+    </TableRow>
+
+</TableLayout>
+
+
+
+

@@ -1,8 +1,10 @@
-package com.example.busvehicletickets;
+package com.example.busvehicletickets.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.busvehicletickets.R;
 
 public class FavoriteActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.busvehicletickets;
+package com.example.busvehicletickets.dto;
 
 public class TravelDetails {
     private String distance;

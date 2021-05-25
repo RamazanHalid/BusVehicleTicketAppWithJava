@@ -1,22 +1,14 @@
-package com.example.busvehicletickets;
+package com.example.busvehicletickets.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
-import com.example.busvehicletickets.ViewPagerAdapter;
+import com.example.busvehicletickets.R;
+import com.example.busvehicletickets.Adapters.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity2
         extends AppCompatActivity {

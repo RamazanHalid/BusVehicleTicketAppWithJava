@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".OthersFragment">
+    tools:context=".Fragments.OthersFragment">
 
     <TextView
         android:id="@+id/others_settings"

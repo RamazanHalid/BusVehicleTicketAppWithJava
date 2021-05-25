@@ -1,4 +1,4 @@
-package com.example.busvehicletickets;
+package com.example.busvehicletickets.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+
+import com.example.busvehicletickets.R;
+import com.example.busvehicletickets.dto.TravelDetails;
 
 import org.jetbrains.annotations.Nullable;
 

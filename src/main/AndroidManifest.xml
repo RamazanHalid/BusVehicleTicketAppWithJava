@@ -10,25 +10,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BusVehicleTickets">
-        <activity android:name=".FavoriteTicketActivity"></activity>
-        <activity android:name=".ReservedTicketActivity" />
+        <activity android:name=".Activities.CanceledTicketActivity"></activity>
+        <activity android:name=".Activities.FavoriteTicketActivity" />
+        <activity android:name=".Activities.ReservedTicketActivity" />
         <activity android:name=".Deneme35Activity" />
-        <activity android:name=".SeatSelectingActivity" />
-        <activity android:name=".ResultActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".BoughtTicketActivity" />
-        <activity android:name=".FavoriteActivity" />
+        <activity android:name=".Activities.SeatSelectingActivity" />
+        <activity android:name=".Activities.ResultActivity" />
+        <activity android:name=".Activities.ProfileActivity" />
+        <activity android:name=".Activities.BoughtTicketActivity" />
+        <activity android:name=".Activities.FavoriteActivity" />
         <activity android:name=".SellingActivity" />
-        <activity android:name=".SearchResultActivity" />
+        <activity android:name=".Activities.SearchResultActivity" />
         <activity
-            android:name=".HomeFragment"
+            android:name=".Fragments.HomeFragment"
             tools:ignore="Instantiatable" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".Activities.MainActivity2"
             android:label="@string/title_activity_main2"
             android:theme="@style/Theme.BusVehicleTickets.NoActionBar" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".Activities.RegisterActivity" />
+        <activity android:name=".Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

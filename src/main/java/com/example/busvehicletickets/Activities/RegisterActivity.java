@@ -9,7 +9,7 @@
  * */
 
 
-package com.example.busvehicletickets;
+package com.example.busvehicletickets.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,9 +22,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.busvehicletickets.dto.AllInformationOfUser;
+import com.example.busvehicletickets.R;
 import com.example.busvehicletickets.dto.TicketDto;
-import com.example.busvehicletickets.dto.User;
 import com.example.busvehicletickets.dto.UserDto;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

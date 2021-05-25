@@ -1,9 +1,13 @@
-package com.example.busvehicletickets;
+package com.example.busvehicletickets.Adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.example.busvehicletickets.Fragments.HomeFragment;
+import com.example.busvehicletickets.Fragments.MenuFragment;
+import com.example.busvehicletickets.Fragments.OthersFragment;
 
 public class ViewPagerAdapter
         extends FragmentPagerAdapter {

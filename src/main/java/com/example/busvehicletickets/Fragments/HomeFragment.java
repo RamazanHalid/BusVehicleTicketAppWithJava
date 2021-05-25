@@ -1,4 +1,4 @@
-package com.example.busvehicletickets;
+package com.example.busvehicletickets.Fragments;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import android.annotation.SuppressLint;
@@ -19,22 +19,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.busvehicletickets.Activities.SearchResultActivity;
+import com.example.busvehicletickets.R;
 import com.example.busvehicletickets.dto.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.type.Date;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class HomeFragment extends Fragment{
 

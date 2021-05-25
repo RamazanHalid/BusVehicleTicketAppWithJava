@@ -1,4 +1,4 @@
-package com.example.busvehicletickets;
+package com.example.busvehicletickets.Adapters;
 
 
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.busvehicletickets.R;
 import com.example.busvehicletickets.dto.TicketDto;
 import com.example.busvehicletickets.dto.TravelDto;
 

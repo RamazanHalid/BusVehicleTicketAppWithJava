@@ -1,4 +1,4 @@
-package com.example.busvehicletickets;
+package com.example.busvehicletickets.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.busvehicletickets.R;
+import com.example.busvehicletickets.dto.TravelDetails;
+import com.example.busvehicletickets.Adapters.TravelDetailsAdapter;
 import com.example.busvehicletickets.dto.TravelDto;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

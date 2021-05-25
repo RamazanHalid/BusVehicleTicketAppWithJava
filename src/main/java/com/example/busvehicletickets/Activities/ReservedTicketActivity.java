@@ -1,14 +1,15 @@
-package com.example.busvehicletickets;
+package com.example.busvehicletickets.Activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TableLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.busvehicletickets.R;
+import com.example.busvehicletickets.Adapters.TravelDtoForReservedTicketsAdapter;
 import com.example.busvehicletickets.dto.TicketDto;
 import com.example.busvehicletickets.dto.TravelDto;
 import com.example.busvehicletickets.dto.UserDto;

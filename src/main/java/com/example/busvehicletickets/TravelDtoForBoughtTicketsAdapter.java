@@ -2,10 +2,12 @@ package com.example.busvehicletickets;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
@@ -18,11 +20,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TravelDtoAdapter extends ArrayAdapter<TravelDto> {
+public class TravelDtoForBoughtTicketsAdapter extends ArrayAdapter<TravelDto> {
     private Context mContext;
     private List<TravelDto> travelDtoList;
 
-    public TravelDtoAdapter(@NonNull Context context, @SuppressLint("SupportAnnotationUsage") @LayoutRes ArrayList<TravelDto> list) {
+    public TravelDtoForBoughtTicketsAdapter(@NonNull Context context, @SuppressLint("SupportAnnotationUsage") @LayoutRes ArrayList<TravelDto> list) {
         super(context, 0 , list);
         mContext = context;
         travelDtoList = list;

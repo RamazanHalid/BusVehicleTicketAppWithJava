@@ -2,10 +2,12 @@ package com.example.busvehicletickets;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TableLayout;
 
 import com.example.busvehicletickets.dto.TicketDto;
 import com.example.busvehicletickets.dto.TravelDto;
@@ -22,22 +24,25 @@ public class BoughtTicketActivity extends AppCompatActivity {
     FirebaseFirestore myRef = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private ListView listView;
-    private TravelDtoAdapter mAdapter;
+    private TravelDtoForBoughtTicketsAdapter mAdapter;
     private ArrayList<TravelDto> travelDtoArrayList;
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bought_ticket);
+        TableLayout tableLayout = (TableLayout) findViewById(R.id.www);
+
+
+
 
         listView = (ListView) findViewById(R.id.search_resultList);
+
         travelDtoArrayList = new ArrayList<>();
-       // travelDtoArrayList.add(new TravelDto("asdfaf","asdfaf","asdfaf","asdfaf","asdfaf","asdfaf","asdfaf"));
 
         myRef.collection("users")
 
-                .document("2uXLbB9kMYdr50RSddgIOKnx3uu2")
-                //.document(mAuth.getCurrentUser().getUid())
-
+                .document(mAuth.getCurrentUser().getUid())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -51,8 +56,10 @@ public class BoughtTicketActivity extends AppCompatActivity {
 
                             }
 
-                           // travelDtoArrayList.add(new TravelDto("asdfaf","asdfaf","asdfaf","asdfaf","asdfaf","asdfaf","asdfaf"));
-                            mAdapter = new TravelDtoAdapter(BoughtTicketActivity.this,travelDtoArrayList);
+
+                            mAdapter = new TravelDtoForBoughtTicketsAdapter(BoughtTicketActivity.this,travelDtoArrayList);
+
+
                             listView.setAdapter(mAdapter);
                             listView.setOnItemClickListener(listClick);
                         }
@@ -65,7 +72,6 @@ public class BoughtTicketActivity extends AppCompatActivity {
 
 
                 });
-
 
     }
     private AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener() {

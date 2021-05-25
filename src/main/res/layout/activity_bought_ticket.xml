@@ -12,7 +12,17 @@
         tools:layout_editor_absoluteX="208dp"
         tools:layout_editor_absoluteY="162dp">
 
+        <TextView
+            android:id="@+id/asd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
 
+            android:gravity="center_horizontal"
+            android:text="Bought Tickets"
+            android:textColor="#00BCD4"
+            android:textSize="20dp" />
 
 
         <TextView
@@ -31,9 +41,9 @@
             android:id="@+id/search_resultList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textAlignment="center"
+
             android:gravity="center"
-            />
+            android:textAlignment="center" />
 
 
     </LinearLayout>

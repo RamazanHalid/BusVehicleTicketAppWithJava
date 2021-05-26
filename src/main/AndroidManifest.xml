@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BusVehicleTickets">
-        <activity android:name=".Activities.CancelTheTicketActivity"></activity>
+        <activity android:name=".Activities.FavoriteTicketDetailsActivity"></activity>
+        <activity android:name=".Activities.CancelTheTicketActivity" />
         <activity android:name=".Activities.CanceledTicketActivity" />
         <activity android:name=".Activities.FavoriteTicketActivity" />
         <activity android:name=".Activities.ReservedTicketActivity" />

@@ -39,7 +39,7 @@
 
 
         <ListView
-            android:id="@+id/search_resultList"
+            android:id="@+id/favorite_search_resultList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 

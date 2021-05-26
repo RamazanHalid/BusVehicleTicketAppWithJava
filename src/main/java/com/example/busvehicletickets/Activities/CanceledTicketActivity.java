@@ -44,7 +44,7 @@ public class CanceledTicketActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        UserDto userDto = documentSnapshot.toObject(UserDto.class);
+                            UserDto userDto = documentSnapshot.toObject(UserDto.class);
 
                             ArrayList<TicketDto> ticketDtoArrayList = userDto.getTicketDtoArrayList();
 

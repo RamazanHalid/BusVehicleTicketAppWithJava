@@ -38,7 +38,6 @@ public class BoughtTicketActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bought_ticket);
-        TableLayout tableLayout = (TableLayout) findViewById(R.id.www);
 
 
         intentForCancelingTheTicket = new Intent(BoughtTicketActivity.this, CancelTheTicketActivity.class);
@@ -84,7 +83,6 @@ public class BoughtTicketActivity extends AppCompatActivity {
                     AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            System.out.println(ticketDtoArrayList.toString());
                            intentForCancelingTheTicket.putExtra("canceledTicket", ticketDtoArrayList.get(position));
                            startActivity(intentForCancelingTheTicket);
 

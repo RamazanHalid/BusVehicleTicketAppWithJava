@@ -88,7 +88,7 @@ public class CancelTheTicketActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Ticket CANCELED!", Toast.LENGTH_LONG).show();
         startActivity(toSearchPageIntent2);
-        //finish();
+        finish();
     }
     public void doSeatUnavailable(String seatNumberM, String statusOfTicketM){
         myRef.collection("travels")

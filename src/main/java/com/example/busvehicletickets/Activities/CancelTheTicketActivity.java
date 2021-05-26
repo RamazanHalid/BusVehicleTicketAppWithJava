@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.busvehicletickets.Fragments.MenuFragment;
 import com.example.busvehicletickets.R;
 import com.example.busvehicletickets.dto.TicketDto;
 import com.example.busvehicletickets.dto.TravelDto;
@@ -27,7 +28,7 @@ import java.util.HashMap;
 public class CancelTheTicketActivity extends AppCompatActivity {
     TicketDto ticketDto;
     TravelDto travelDto;
-    private Intent toSearchPageIntent;
+    private Intent toSearchPageIntent2;
     FirebaseFirestore myRef = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private String travelId;
@@ -83,9 +84,10 @@ public class CancelTheTicketActivity extends AppCompatActivity {
                 .update("ticketDtoArrayList", FieldValue.arrayUnion(ticketDto2));
 
         doSeatUnavailable(travelDto.getChairNumber(),"available");
-        toSearchPageIntent = new Intent(CancelTheTicketActivity.this,BoughtTicketActivity.class);
-         startActivity(toSearchPageIntent);
+        toSearchPageIntent2 = new Intent(CancelTheTicketActivity.this, MainActivity2.class);
+
         Toast.makeText(this, "Ticket CANCELED!", Toast.LENGTH_LONG).show();
+        startActivity(toSearchPageIntent2);
         //finish();
     }
     public void doSeatUnavailable(String seatNumberM, String statusOfTicketM){

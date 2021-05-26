@@ -28,6 +28,7 @@ public class BoughtTicketActivity extends AppCompatActivity {
     FirebaseFirestore myRef = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private ListView listView;
+    UserDto userDto;
     private TravelDtoForBoughtTicketsAdapter mAdapter;
     private ArrayList<TravelDto> travelDtoArrayList;
     ArrayList<TicketDto> ticketDtoArrayList;
@@ -41,7 +42,7 @@ public class BoughtTicketActivity extends AppCompatActivity {
 
 
         intentForCancelingTheTicket = new Intent(BoughtTicketActivity.this, CancelTheTicketActivity.class);
-
+        ticketDtoArrayList = new ArrayList<>();
 
         listView = (ListView) findViewById(R.id.search_resultList);
 
@@ -54,39 +55,44 @@ public class BoughtTicketActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        UserDto userDto = documentSnapshot.toObject(UserDto.class);
-                        ticketDtoArrayList = userDto.getTicketDtoArrayList();
+                        userDto = documentSnapshot.toObject(UserDto.class);
+                       // ticketDtoArrayList = userDto.getTicketDtoArrayList();
 
-                        for (int i = 0; i < ticketDtoArrayList.size(); i++) {
-                            if (ticketDtoArrayList.get(i).getStatusOfTicket().equals("bought")){
-                                travelDtoArrayList.add(ticketDtoArrayList.get(i).getTravelDto());
-
+                        for (int i = 0; i < userDto.getTicketDtoArrayList().size(); i++) {
+                            if (userDto.getTicketDtoArrayList().get(i).getStatusOfTicket().equals("bought")){
+                               // System.out.println(userDto.getTicketDtoArrayList().get(i).getStatusOfTicket());
+                               // System.out.println(userDto.getTicketDtoArrayList().get(i).getTravelDto().getChairNumber());
+                                //System.out.println(ticketDtoArrayList.get(i).getTravelDto().getChairNumber());
+                                travelDtoArrayList.add(userDto.getTicketDtoArrayList().get(i).getTravelDto());
+                                ticketDtoArrayList.add(userDto.getTicketDtoArrayList().get(i));
+                                System.out.println(travelDtoArrayList.toString());
                             }
 
-
+                            System.out.println("working 2");
                             mAdapter = new TravelDtoForBoughtTicketsAdapter(BoughtTicketActivity.this,travelDtoArrayList);
-                         //   intentForCancelingTheTicket.putExtra("canceledTicket", )
+                            //   intentForCancelingTheTicket.putExtra("canceledTicket", )
 
                             listView.setAdapter(mAdapter);
                             listView.setOnItemClickListener(listClick);
+
+
                         }
 
 
 
-
-
                     }
+                    AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            System.out.println(ticketDtoArrayList.toString());
+                           intentForCancelingTheTicket.putExtra("canceledTicket", ticketDtoArrayList.get(position));
+                           startActivity(intentForCancelingTheTicket);
 
+                        }
+                    };
 
                 });
 
     }
-    private AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            intentForCancelingTheTicket.putExtra("canceledTicket", ticketDtoArrayList.get(position));
-            startActivity(intentForCancelingTheTicket);
 
-        }
-    };
 }

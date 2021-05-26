@@ -44,7 +44,9 @@ public class FavoriteTicketActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         UserDto userDto = documentSnapshot.toObject(UserDto.class);
                         ArrayList<TicketDto> ticketDtoArrayList = userDto.getTicketDtoArrayList();
-
+                        TravelDto travelDto = userDto.getTicketDtoArrayList().get(0).getTravelDto();
+                        System.out.println(travelDto);
+                        System.out.println(userDto.getTicketDtoArrayList().size());
                         for (int i = 0; i < ticketDtoArrayList.size(); i++) {
                             if (ticketDtoArrayList.get(i).getStatusOfTicket().equals("favorite")){
                                 travelDtoArrayList.add(ticketDtoArrayList.get(i).getTravelDto());
@@ -72,7 +74,7 @@ public class FavoriteTicketActivity extends AppCompatActivity {
     private AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            System.out.println(position);
 
         }
     };

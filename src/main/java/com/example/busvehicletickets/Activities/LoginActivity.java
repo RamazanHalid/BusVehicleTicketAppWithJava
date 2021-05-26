@@ -47,11 +47,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
 
         super.onStart();
-       /* if (mAuth.getCurrentUser()!=null){
+        if (mAuth.getCurrentUser()!=null){
             Intent mainIntent = new Intent(this, MainActivity2.class);
             startActivity(mainIntent);
 
-          }*/
+          }
     }
 
     public void navigateUser(View view){

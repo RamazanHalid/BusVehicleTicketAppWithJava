@@ -43,7 +43,7 @@ public class ReservedTicketActivity extends AppCompatActivity {
 
         myRef.collection("users")
 
-                .document("2uXLbB9kMYdr50RSddgIOKnx3uu2")
+                .document(mAuth.getCurrentUser().getUid())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override

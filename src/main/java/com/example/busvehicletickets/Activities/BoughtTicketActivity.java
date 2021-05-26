@@ -3,6 +3,7 @@ package com.example.busvehicletickets.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class BoughtTicketActivity extends AppCompatActivity {
@@ -28,6 +30,8 @@ public class BoughtTicketActivity extends AppCompatActivity {
     private ListView listView;
     private TravelDtoForBoughtTicketsAdapter mAdapter;
     private ArrayList<TravelDto> travelDtoArrayList;
+    ArrayList<TicketDto> ticketDtoArrayList;
+    Intent intentForCancelingTheTicket;
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class BoughtTicketActivity extends AppCompatActivity {
         TableLayout tableLayout = (TableLayout) findViewById(R.id.www);
 
 
+        intentForCancelingTheTicket = new Intent(BoughtTicketActivity.this, CancelTheTicketActivity.class);
 
 
         listView = (ListView) findViewById(R.id.search_resultList);
@@ -50,7 +55,7 @@ public class BoughtTicketActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         UserDto userDto = documentSnapshot.toObject(UserDto.class);
-                        ArrayList<TicketDto> ticketDtoArrayList = userDto.getTicketDtoArrayList();
+                        ticketDtoArrayList = userDto.getTicketDtoArrayList();
 
                         for (int i = 0; i < ticketDtoArrayList.size(); i++) {
                             if (ticketDtoArrayList.get(i).getStatusOfTicket().equals("bought")){
@@ -60,7 +65,7 @@ public class BoughtTicketActivity extends AppCompatActivity {
 
 
                             mAdapter = new TravelDtoForBoughtTicketsAdapter(BoughtTicketActivity.this,travelDtoArrayList);
-
+                         //   intentForCancelingTheTicket.putExtra("canceledTicket", )
 
                             listView.setAdapter(mAdapter);
                             listView.setOnItemClickListener(listClick);
@@ -79,7 +84,8 @@ public class BoughtTicketActivity extends AppCompatActivity {
     private AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            intentForCancelingTheTicket.putExtra("canceledTicket", ticketDtoArrayList.get(position));
+            startActivity(intentForCancelingTheTicket);
 
         }
     };

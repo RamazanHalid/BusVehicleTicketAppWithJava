@@ -91,8 +91,4 @@ public class TravelDto implements Serializable {
         this.leavingTime = leavingTime;
     }
 
-    @Override
-    public String toString() {
-        return     date + " " + fromCity + " " +toCity + " " + leavingTime ;
-    }
 }

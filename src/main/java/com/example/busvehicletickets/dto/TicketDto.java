@@ -1,6 +1,8 @@
 package com.example.busvehicletickets.dto;
 
-public class TicketDto {
+import java.io.Serializable;
+
+public class TicketDto implements Serializable {
     private String travelId;
     private String statusOfTicket;
     private TravelDto travelDto;

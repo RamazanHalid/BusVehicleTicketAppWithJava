@@ -30,8 +30,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class HomeFragment extends Fragment{
 
@@ -133,7 +137,10 @@ public class HomeFragment extends Fragment{
                                         });
 
                                         travelDate = (TextView) view.findViewById(R.id.travelDate);
-                                        travelDate.setText( "12/5/2021");
+                                        SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy", new Locale("tr"));
+                                        String currentDate =sdf.format(new Date());
+
+                                        travelDate.setText( currentDate);
                                         travelDate.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
@@ -172,13 +179,29 @@ public class HomeFragment extends Fragment{
 
                                                 }
                                                 else {
-                                                    Intent intent = new Intent(getContext(), SearchResultActivity.class);
-                                                    String travelDateString = travelDate.getText().toString();
+                                                    try {
+                                                        Date ticketDate = new SimpleDateFormat("d/M/yyyy", Locale.ENGLISH)
+                                                                .parse(date);
+                                                        Date current = new SimpleDateFormat("d/M/yyyy", Locale.ENGLISH)
+                                                                .parse(currentDate);
+                                                        if (current.compareTo( ticketDate) < 0){
+                                                            Intent intent = new Intent(getContext(), SearchResultActivity.class);
+                                                            String travelDateString = travelDate.getText().toString();
 
-                                                    intent.putExtra("travelDate", travelDateString);
-                                                    intent.putExtra("toCity", toCity);
-                                                    intent.putExtra("fromCity", fromCity);
-                                                    startActivity(intent);
+                                                            intent.putExtra("travelDate", travelDateString);
+                                                            intent.putExtra("toCity", toCity);
+                                                            intent.putExtra("fromCity", fromCity);
+                                                            startActivity(intent);
+                                                        }
+                                                        else {
+                                                            Toast.makeText(getContext(), "You can not select PREVIOUS date!!!", Toast.LENGTH_SHORT).show();
+
+
+                                                        }
+                                                    } catch (ParseException e) {
+                                                        e.printStackTrace();
+                                                    }
+
 
                                                 }
 

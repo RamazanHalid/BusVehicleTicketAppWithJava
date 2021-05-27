@@ -114,7 +114,9 @@ public class MainActivity2
                                             .parse(ticketDate);
                                     Date current = new SimpleDateFormat("d/M/yyyy hh:mm", Locale.ENGLISH)
                                             .parse(currentDate);
+
                                     if (ticket.compareTo(current) < 0) {
+
                                         if (userDto.getTicketDtoArrayList().get(i).getStatusOfTicket().equals("bought")){
                                             convertToPreviousTicket(userDto.getTicketDtoArrayList().get(i).getTravelId(),
                                                                     userDto.getTicketDtoArrayList().get(i).getTravelDto(),

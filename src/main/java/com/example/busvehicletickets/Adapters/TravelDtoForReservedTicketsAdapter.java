@@ -37,16 +37,16 @@ public class TravelDtoForReservedTicketsAdapter extends ArrayAdapter<TravelDto> 
 
         TravelDto currentTravel = travelDtoList.get(position);
 
-        TextView fromCity = (TextView)listItem.findViewById(R.id.bought_textView_from);
+        TextView fromCity = (TextView)listItem.findViewById(R.id.reserved_textView_from);
         fromCity.setText(currentTravel.getFromCity().toUpperCase());
 
-        TextView toCity = (TextView) listItem.findViewById(R.id.bought_textView_to);
+        TextView toCity = (TextView) listItem.findViewById(R.id.reserved_textView_to);
         toCity.setText(currentTravel.getToCity().toUpperCase());
 
-        TextView leavingTime = (TextView) listItem.findViewById(R.id.bought_textView_leavingTime);
+        TextView leavingTime = (TextView) listItem.findViewById(R.id.reserved_textView_leavingTime);
         leavingTime.setText(currentTravel.getLeavingTime());
 
-        TextView travelDate = (TextView) listItem.findViewById(R.id.bought_textView_date);
+        TextView travelDate = (TextView) listItem.findViewById(R.id.reserved_textView_date);
         travelDate.setText(currentTravel.getDate());
 
         return listItem;

@@ -20,7 +20,7 @@
         android:background="#2196F3">
 
         <TextView
-            android:id="@+id/bought_textView_date"
+            android:id="@+id/reserved_textView_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -31,11 +31,11 @@
             />
 
         <TextView
-            android:id="@+id/bought_textView_from"
+            android:id="@+id/reserved_textView_from"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:layout_toRightOf="@id/textView_leavingTime"
+            android:layout_toRightOf="@id/reserved_textView_date"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textAlignment="center"
@@ -43,20 +43,20 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/bought_textView_to"
+            android:id="@+id/reserved_textView_to"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:layout_toRightOf="@id/textView_distance"
+            android:layout_toRightOf="@id/reserved_textView_from"
             android:layout_weight="1"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/bought_textView_leavingTime"
+            android:id="@+id/reserved_textView_leavingTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:layout_toRightOf="@id/textView_travelTime"
+            android:layout_toRightOf="@id/reserved_textView_to"
             android:layout_weight="1"
             android:textSize="20sp" />
 

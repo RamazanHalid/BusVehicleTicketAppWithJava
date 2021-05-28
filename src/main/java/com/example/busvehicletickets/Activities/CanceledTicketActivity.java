@@ -3,6 +3,7 @@ package com.example.busvehicletickets.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +26,8 @@ public class CanceledTicketActivity extends AppCompatActivity {
     FirebaseFirestore myRef = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private ListView listView2;
+    Intent toCanceledTicket;
+    ArrayList<TicketDto> ticketDtoArrayList;
     private TravelDtoForCanceledTicketsAdapter mAdapter;
     private ArrayList<TravelDto> travelDtoArrayList;
     @SuppressLint("ResourceAsColor")
@@ -32,9 +35,9 @@ public class CanceledTicketActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_canceled_ticket);
-
+        toCanceledTicket = new Intent(CanceledTicketActivity.this, CanceledTicketDetailsActivity.class);
         listView2 = (ListView) findViewById(R.id.search_resultList);
-
+        ticketDtoArrayList = new ArrayList<>();
         travelDtoArrayList = new ArrayList<>();
 
         myRef.collection("users")
@@ -46,12 +49,12 @@ public class CanceledTicketActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                             UserDto userDto = documentSnapshot.toObject(UserDto.class);
 
-                            ArrayList<TicketDto> ticketDtoArrayList = userDto.getTicketDtoArrayList();
 
-                            for (int i = 0; i < ticketDtoArrayList.size(); i++) {
-                                if (ticketDtoArrayList.get(i).getStatusOfTicket().equals("canceled")){
-                                    travelDtoArrayList.add(ticketDtoArrayList.get(i).getTravelDto());
 
+                            for (int i = 0; i < userDto.getTicketDtoArrayList().size(); i++) {
+                                if (userDto.getTicketDtoArrayList().get(i).getStatusOfTicket().equals("canceled")){
+                                    travelDtoArrayList.add(userDto.getTicketDtoArrayList().get(i).getTravelDto());
+                                    ticketDtoArrayList.add(userDto.getTicketDtoArrayList().get(i));
                                     }
 
                             mAdapter = new TravelDtoForCanceledTicketsAdapter(CanceledTicketActivity.this,travelDtoArrayList);
@@ -72,7 +75,8 @@ public class CanceledTicketActivity extends AppCompatActivity {
     private AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            toCanceledTicket.putExtra("canceledTicket", ticketDtoArrayList.get(position));
+            startActivity(toCanceledTicket);
 
         }
     };

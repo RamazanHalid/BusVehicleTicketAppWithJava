@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class PreviousTicketActivity extends AppCompatActivity {
     FirebaseFirestore myRef = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    Intent toFavoriteTicket;
+    Intent toPreviousTicket;
     private ListView listView2;
     UserDto userDto;
     private TravelDtoForPreviousTicketsAdapter mAdapter;
@@ -38,7 +38,7 @@ public class PreviousTicketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_previous_ticket2);
 
-        //toFavoriteTicket = new Intent(FavoriteTicketActivity.this, FavoriteTicketDetailsActivity.class);
+        toPreviousTicket = new Intent(PreviousTicketActivity.this, PreviousTicketDetailsActivity.class);
         ticketDtoArrayList = new ArrayList<>();
         travelDtoArrayList = new ArrayList<>();
         listView2 = (ListView) findViewById(R.id.previous_search_resultList);
@@ -63,7 +63,7 @@ public class PreviousTicketActivity extends AppCompatActivity {
 
 
                         }
-                        System.out.println(travelDtoArrayList.get(2).getFromCity());
+
                         mAdapter = new TravelDtoForPreviousTicketsAdapter(PreviousTicketActivity.this,travelDtoArrayList);
                         listView2.setAdapter(mAdapter);
                          listView2.setOnItemClickListener(listClick);
@@ -74,8 +74,8 @@ public class PreviousTicketActivity extends AppCompatActivity {
     private AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-           // toFavoriteTicket.putExtra("favoriteTicket", ticketDtoArrayList.get(position));
-            //startActivity(toFavoriteTicket);
+            toPreviousTicket.putExtra("previousTicket", ticketDtoArrayList.get(position));
+            startActivity(toPreviousTicket);
         }
     };
 }

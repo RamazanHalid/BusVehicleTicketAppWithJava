@@ -9,7 +9,7 @@
     >
 
     <TableRow
-        android:id="@+id/listPreviousRow"
+        android:id="@+id/listBoughtRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="7dp"
@@ -17,10 +17,10 @@
 
         android:alwaysDrawnWithCache="true"
         android:animateLayoutChanges="true"
-        android:background="#2196F3">
+        android:background="#009688">
 
         <TextView
-            android:id="@+id/reserved_textView_date"
+            android:id="@+id/previous_textView_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -31,11 +31,11 @@
             />
 
         <TextView
-            android:id="@+id/reserved_textView_from"
+            android:id="@+id/previous_textView_from"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:layout_toRightOf="@id/reserved_textView_date"
+            android:layout_toRightOf="@id/previous_textView_date"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textAlignment="center"
@@ -43,20 +43,20 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/reserved_textView_to"
+            android:id="@+id/previous_textView_to"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:layout_toRightOf="@id/reserved_textView_from"
+            android:layout_toRightOf="@id/previous_textView_from"
             android:layout_weight="1"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/reserved_textView_leavingTime"
+            android:id="@+id/previous_textView_leavingTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:layout_toRightOf="@id/reserved_textView_to"
+            android:layout_toRightOf="@id/previous_textView_to"
             android:layout_weight="1"
             android:textSize="20sp" />
 

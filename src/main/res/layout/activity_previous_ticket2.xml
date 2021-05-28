@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.PreviousTicketActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="208dp"
+        tools:layout_editor_absoluteY="162dp">
+
+        <TextView
+            android:id="@+id/asd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+
+            android:gravity="center_horizontal"
+            android:text="PREVIOUS Tickets"
+            android:textColor="#00BCD4"
+            android:textSize="20dp" />
+
+
+        <TextView
+            android:id="@+id/nothing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date    |   FromCity   |   ToCity   |  Time"
+            android:textSize="20dp"
+
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center_horizontal" />
+
+
+        <ListView
+            android:id="@+id/previous_search_resultList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:gravity="center"
+            android:textAlignment="center" />
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

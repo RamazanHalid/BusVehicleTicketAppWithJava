@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.busvehicletickets.Activities.BoughtTicketActivity;
 import com.example.busvehicletickets.Activities.CanceledTicketActivity;
 import com.example.busvehicletickets.Activities.FavoriteTicketActivity;
+import com.example.busvehicletickets.Activities.PreviousTicketActivity;
 import com.example.busvehicletickets.Activities.ReservedTicketActivity;
 import com.example.busvehicletickets.R;
 
@@ -54,7 +55,8 @@ public class MenuFragment extends Fragment {
         previousTravelsTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                intent = new Intent(getContext(), PreviousTicketActivity.class);
+                startActivity(intent);
             }
         });
         TextView canceledTicketsTextView = (TextView) view.findViewById(R.id.menu_canceledTickets);

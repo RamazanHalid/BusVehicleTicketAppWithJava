@@ -64,13 +64,15 @@ public class HomeFragment extends Fragment{
         view = inflater.inflate(R.layout.home_frag_layout, container, false);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),R.layout.my_list , contents1);
-
+        SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy", new Locale("tr"));
+        String currentDate =sdf.format(new Date());
         //String userId = getActivity().getIntent().getExtras().getString("userId");
         mAuth = FirebaseAuth.getInstance();
         String userId = mAuth.getCurrentUser().getUid();
         TextView textView = (TextView) view.findViewById(R.id.homepage_textViewUser);
-
-
+        travelDate = (TextView) view.findViewById(R.id.travelDate);
+        travelDate.setText(currentDate);
+        date = (String) travelDate.getText();
         myRef.collection("users")
                 .document(userId)
                 .get()
@@ -136,9 +138,8 @@ public class HomeFragment extends Fragment{
                                             }
                                         });
 
-                                        travelDate = (TextView) view.findViewById(R.id.travelDate);
-                                        SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy", new Locale("tr"));
-                                        String currentDate =sdf.format(new Date());
+
+
 
                                         travelDate.setText( currentDate);
                                         travelDate.setOnClickListener(new View.OnClickListener() {

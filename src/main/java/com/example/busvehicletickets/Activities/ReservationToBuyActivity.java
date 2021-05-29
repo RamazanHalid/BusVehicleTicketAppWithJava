@@ -74,11 +74,10 @@ public class ReservationToBuyActivity extends AppCompatActivity {
 
     }
     public void buyTheReservedTicket(View view){
-        TicketDto ticketDto2 = new TicketDto(travelId,"bought",travelDto);
+        TicketDto ticketDto2 = new TicketDto(travelId,"booked",travelDto);
         myRef.collection("users")
                 .document(mAuth.getCurrentUser().getUid())
-                .update("ticketDtoArrayList", FieldValue.arrayRemove(ticketDto)
-                        ,"ticketDtoArrayList" , FieldValue.arrayUnion(ticketDto2));
+                .update("ticketDtoArrayList", FieldValue.arrayRemove(ticketDto));
 
 
 
@@ -86,7 +85,7 @@ public class ReservationToBuyActivity extends AppCompatActivity {
                 .document(mAuth.getCurrentUser().getUid())
                 .update("ticketDtoArrayList", FieldValue.arrayUnion(ticketDto2));
 
-        doSeatUnavailable(travelDto.getChairNumber(),"bought");
+        doSeatUnavailable(travelDto.getChairNumber(),"booked");
         toSearchPageIntent2 = new Intent(ReservationToBuyActivity.this, MainActivity2.class);
 
         Toast.makeText(this, "Ticket Bought!", Toast.LENGTH_LONG).show();

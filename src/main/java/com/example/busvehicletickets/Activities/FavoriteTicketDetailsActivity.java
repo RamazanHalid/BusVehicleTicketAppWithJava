@@ -78,11 +78,21 @@ public class FavoriteTicketDetailsActivity extends AppCompatActivity {
         reserveTheTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TicketDto ticketDto = new TicketDto(travelId,"reserved",travelDto);
+              /*  TicketDto ticketDto = new TicketDto(travelId,"reserved",travelDto);
                 myRef.collection("users")
                         .document(user.getUid())
                         .update("ticketDtoArrayList", FieldValue.arrayUnion(ticketDto));
+*/
 
+                myRef.collection("users")
+                        .document(mAuth.getCurrentUser().getUid())
+                        .update("ticketDtoArrayList", FieldValue.arrayRemove(ticketDto));
+
+
+                TicketDto ticketDto2 = new TicketDto(travelId,"reserved",travelDto);
+                myRef.collection("users")
+                        .document(mAuth.getCurrentUser().getUid())
+                        .update("ticketDtoArrayList", FieldValue.arrayUnion(ticketDto2));
 
                 doSeatUnavailable(travelDto.getChairNumber(), "reserved");
                 toSearchPageIntent = new Intent(FavoriteTicketDetailsActivity.this,MainActivity2.class);
@@ -95,11 +105,15 @@ public class FavoriteTicketDetailsActivity extends AppCompatActivity {
     }
     public void buyTheFavoriteTicket(View view){
 
-        TicketDto ticketDto = new TicketDto(travelId,"bought",travelDto);
-
         myRef.collection("users")
-                .document(user.getUid())
-                .update("ticketDtoArrayList", FieldValue.arrayUnion(ticketDto));
+                .document(mAuth.getCurrentUser().getUid())
+                .update("ticketDtoArrayList", FieldValue.arrayRemove(ticketDto));
+
+
+        TicketDto ticketDto2 = new TicketDto(travelId,"booked",travelDto);
+        myRef.collection("users")
+                .document(mAuth.getCurrentUser().getUid())
+                .update("ticketDtoArrayList", FieldValue.arrayUnion(ticketDto2));
 
         doSeatUnavailable(travelDto.getChairNumber(),"booked");
         toSearchPageIntent = new Intent(FavoriteTicketDetailsActivity.this,MainActivity2.class);

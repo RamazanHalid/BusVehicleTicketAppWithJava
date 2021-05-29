@@ -58,7 +58,7 @@ public class BoughtTicketActivity extends AppCompatActivity {
                        // ticketDtoArrayList = userDto.getTicketDtoArrayList();
 
                         for (int i = 0; i < userDto.getTicketDtoArrayList().size(); i++) {
-                            if (userDto.getTicketDtoArrayList().get(i).getStatusOfTicket().equals("bought")){
+                            if (userDto.getTicketDtoArrayList().get(i).getStatusOfTicket().equals("booked")){
                                // System.out.println(userDto.getTicketDtoArrayList().get(i).getStatusOfTicket());
                                // System.out.println(userDto.getTicketDtoArrayList().get(i).getTravelDto().getChairNumber());
                                 //System.out.println(ticketDtoArrayList.get(i).getTravelDto().getChairNumber());

@@ -42,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
    static  String password;
    static  String confirmPassword;
    static  String personNameSurname;
+   static  String personNameSurnameForDatabase;
    static  String phoneNumber;
    static  String userGender;
 
@@ -79,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             EditText editTextPersonNameSurname = (EditText) findViewById(R.id.register_editTextTextPersonName);
             personNameSurname = editTextPersonNameSurname.getText().toString();
-
+            personNameSurnameForDatabase = personNameSurname;
             personNameSurname = personNameSurname.replaceAll("\\s+", "");
 
             EditText editTextPhoneNumber = (EditText) findViewById(R.id.register_editTextPhone);
@@ -103,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                     userGender.equals("")
             )) {
                 ArrayList<TicketDto> ticketDtos = new ArrayList<>();
-                UserDto userDto = new UserDto(personNameSurname, phoneNumber, userGender,ticketDtos);
+                UserDto userDto = new UserDto(personNameSurnameForDatabase, phoneNumber, userGender,ticketDtos);
 
                 if (!password.equals(confirmPassword)) {
                     Toast.makeText(RegisterActivity.this, "Password and Confirm password must be the same", Toast.LENGTH_SHORT).show();

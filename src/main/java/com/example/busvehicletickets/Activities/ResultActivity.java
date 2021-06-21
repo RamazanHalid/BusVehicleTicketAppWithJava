@@ -118,7 +118,7 @@ public class ResultActivity extends AppCompatActivity {
     }
     public void buyTheTicket(View view){
 
-        TicketDto ticketDto = new TicketDto(travelDocumentIdFromResultPage,"bought",travelDto);
+        TicketDto ticketDto = new TicketDto(travelDocumentIdFromResultPage,"booked",travelDto);
 
         myRef.collection("users")
                 .document(user.getUid())

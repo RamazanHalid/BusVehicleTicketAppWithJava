@@ -117,7 +117,7 @@ public class MainActivity2
 
                                     if (ticket.compareTo(current) < 0) {
 
-                                        if (userDto.getTicketDtoArrayList().get(i).getStatusOfTicket().equals("bought")){
+                                        if (userDto.getTicketDtoArrayList().get(i).getStatusOfTicket().equals("booked")){
                                             convertToPreviousTicket(userDto.getTicketDtoArrayList().get(i).getTravelId(),
                                                                     userDto.getTicketDtoArrayList().get(i).getTravelDto(),
                                                                     userDto.getTicketDtoArrayList().get(i));

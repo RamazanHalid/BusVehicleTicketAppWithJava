@@ -104,7 +104,7 @@ public class MainActivity2
                         userDto = (UserDto) task.getResult().toObject(UserDto.class);
 
                         ticketDtoArrayList = userDto.getTicketDtoArrayList();
-
+//request.time < timestamp.date(2021, 6, 8)
                         for (int i = 0; i <userDto.getTicketDtoArrayList().size() ; i++) {
                             String ticketDate = userDto.getTicketDtoArrayList().get(i).getTravelDto().getDate()
                                     + " " +userDto.getTicketDtoArrayList().get(i).getTravelDto().getLeavingTime();

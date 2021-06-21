@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BusVehicleTickets">
-        <activity android:name=".Activities.CanceledTicketDetailsActivity"></activity>
+        <activity android:name=".Activities.SendEMailActivity"></activity>
+        <activity android:name=".Activities.CanceledTicketDetailsActivity" />
         <activity android:name=".Activities.PreviousTicketDetailsActivity" />
         <activity android:name=".Activities.PreviousTicketActivity" />
         <activity android:name=".Activities.dfgMainActivity" />

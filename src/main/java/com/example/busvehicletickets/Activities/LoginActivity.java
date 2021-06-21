@@ -39,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
 
          mAuth = FirebaseAuth.getInstance();
          myRef = FirebaseFirestore.getInstance();
-
-       /* Intent intent = new Intent(this, CanceledTicketActivity.class);
+/*
+        Intent intent = new Intent(this, SendEMailActivity.class);
         startActivity(intent);*/
     }
     @Override

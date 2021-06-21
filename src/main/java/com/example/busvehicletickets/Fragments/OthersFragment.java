@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.busvehicletickets.Activities.LoginActivity;
 import com.example.busvehicletickets.Activities.ProfileActivity;
 import com.example.busvehicletickets.Activities.SearchResultActivity;
+import com.example.busvehicletickets.Activities.SendEMailActivity;
 import com.example.busvehicletickets.R;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -24,15 +25,7 @@ public class OthersFragment extends Fragment {
         View view = inflater.inflate(R.layout.others_frag_layout, container, false);
 
 
-        TextView settingsTextView = (TextView) view.findViewById(R.id.others_settings);
-        settingsTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), SearchResultActivity.class);
-                startActivity(intent);
 
-            }
-        });
 
         TextView profileTextView = (TextView) view.findViewById(R.id.others_profile);
         profileTextView.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +40,8 @@ public class OthersFragment extends Fragment {
         contactUsTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getContext(), SendEMailActivity.class);
+                startActivity(intent);
             }
         });
 

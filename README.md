@@ -1,3 +1,6 @@
+Video'ya ek olarak, CANCEL ettiğim biletler tekrar kullanıcılar tarafından satın alınabilir hale geliyor. Teşekkürler
+
+
 # cse234-term-project-ramazan-halid
 cse234-term-project-ramazan-halid created by GitHub Classroom
 

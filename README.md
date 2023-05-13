@@ -1,4 +1,4 @@
-Video'ya ek olarak, CANCEL ettiğim biletler tekrar kullanıcılar tarafından satın alınabilir hale geliyor. Teşekkürler
+This is a Bus Vehicle Ticket mobile application which developed with Java.
 
 
 # cse234-term-project-ramazan-halid
